@@ -1,4 +1,4 @@
-package com.moommim.moommim_web.utils.filter;
+package com.moommim.moommim_web.util.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
