@@ -39,38 +39,33 @@
                 </div>
             </div>
             <div class="ui huge stackable menu">
-                <div class="ui three column grid">
-                    <div class="four wide column">
-                        <div class="ui dropdown item" tabindex="0">
-                            หมวดมู่
-                            <i class="dropdown icon"></i>
-                            <div class="menu transition hidden" tabindex="-1">
-                                <a class="item">Notebook</a>
-                            </div>
-                        </div>
+                <div class="ui dropdown item" tabindex="0">
+                    หมวดมู่
+                    <i class="dropdown icon"></i>
+                    <div class="menu transition hidden" tabindex="-1">
+                        <a class="item">Notebook</a>
+                        <a class="item">Smartphone</a>
+                        <a class="item">Tablet</a>
+                        <a class="item">Camera</a>
                     </div>
-                    <div class="eight wide column">
-                        <div class="item">
-                            <div class="ui action fluid input left icon">
-                                <i class="search icon"></i>
-                                <input type="text" placeholder="ต้องการหาสินค้า...">
-                                <button class="ui button">ค้นหา</button>
-                            </div>
-                        </div>
+                </div>
+                <div class="item">
+                    <div class="ui action input left icon">
+                        <i class="search icon"></i>
+                        <input type="text" placeholder="ต้องการหาสินค้า...">
+                        <button class="ui button">ค้นหา</button>
                     </div>
-                    <div class="four wide column">
-                        <div class="right menu">
-                            <div class="item">
-                                <div class="ui labeled button" tabindex="0">
-                                    <div class="ui primary button">
-                                        <i class="shopping cart icon"></i>
-                                    </div>
-                                    <a class="ui basic primary left pointing label">
-                                        2
-                                    </a>
-                                </div> 
+                </div>
+                <div class="right menu">
+                    <div class="item">
+                        <div class="ui labeled button" tabindex="0">
+                            <div class="ui primary button">
+                                <i class="shopping cart icon"></i>
                             </div>
-                        </div>
+                            <a class="ui basic primary left pointing label">
+                                2
+                            </a>
+                        </div> 
                     </div>
                 </div>
             </div>
