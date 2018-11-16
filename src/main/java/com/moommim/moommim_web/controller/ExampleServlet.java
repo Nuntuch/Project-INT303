@@ -1,5 +1,6 @@
 package com.moommim.moommim_web.controller;
 
+import com.moommim.moommim_web.config.Path;
 import com.moommim.moommim_web.service.base.ExampleService;
 import java.io.IOException;
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class ExampleServlet extends HttpServlet {
             throws ServletException, IOException {
         String greeting = exampleService.getGreeting();
         request.setAttribute("greeting", greeting);
-        request.getRequestDispatcher("/pages/home/index.jsp").forward(request, response);
+        request.getRequestDispatcher(Path.INDEX_VIEW).forward(request, response);
     }
 
     @Override
