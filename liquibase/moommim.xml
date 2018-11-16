@@ -1,0 +1,449 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="naijab (generated)" id="1542402549220-1">
+        <createTable tableName="ads">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(50)"/>
+            <column name="type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender_target" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_show" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-2">
+        <createTable tableName="bill">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bill_status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shipping_status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shipping_type" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="promotion_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-3">
+        <createTable tableName="product_category">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="promotion_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-4">
+        <createTable tableName="product_favorite">
+            <column name="product_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-5">
+        <createTable tableName="product_image">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="product_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-6">
+        <createTable tableName="product_promotion">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="minimum_paid" type="DECIMAL(7, 2)"/>
+            <column name="rate" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_can_use" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-7">
+        <createTable tableName="product_question">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer" type="VARCHAR(200)"/>
+            <column name="create_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-8">
+        <createTable tableName="product_review">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="star" type="DECIMAL(1, 1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="VARCHAR(100)"/>
+            <column name="create_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-9">
+        <createTable tableName="product_sale">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="product_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="DECIMAL(7, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bill_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price_per_unit" type="DECIMAL(7, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-10">
+        <createTable tableName="product_stock">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="promotion_id" type="INT"/>
+            <column name="detail" type="VARCHAR(500)"/>
+            <column name="amount_in_stock" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brand" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(7, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_show" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-11">
+        <createTable tableName="user_account">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dob" type="date"/>
+            <column name="age" type="INT"/>
+            <column name="mobile" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active_token" type="VARCHAR(60)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="active_status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="forgot_password_token" type="VARCHAR(60)">
+                <constraints unique="true"/>
+            </column>
+            <column name="total_point" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_subscribe" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-12">
+        <createTable tableName="user_address">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="receive_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="district" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zipcode" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-13">
+        <createTable tableName="user_type">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="level" type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="group" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="minimum_point" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-14">
+        <createIndex indexName="address_id" tableName="bill">
+            <column name="address_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-15">
+        <createIndex indexName="bill_id" tableName="product_sale">
+            <column name="bill_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-16">
+        <createIndex indexName="category_id" tableName="product_stock">
+            <column name="category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-17">
+        <createIndex indexName="product_id" tableName="product_image">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-18">
+        <createIndex indexName="product_id" tableName="product_question">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-19">
+        <createIndex indexName="product_id" tableName="product_review">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-20">
+        <createIndex indexName="product_id" tableName="product_sale">
+            <column name="product_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-21">
+        <createIndex indexName="promotion_id" tableName="bill">
+            <column name="promotion_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-22">
+        <createIndex indexName="promotion_id" tableName="product_category">
+            <column name="promotion_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-23">
+        <createIndex indexName="promotion_id" tableName="product_stock">
+            <column name="promotion_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-24">
+        <createIndex indexName="type" tableName="user_account">
+            <column name="type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-25">
+        <createIndex indexName="user_id" tableName="bill">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-26">
+        <createIndex indexName="user_id" tableName="product_favorite">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-27">
+        <createIndex indexName="user_id" tableName="product_question">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-28">
+        <createIndex indexName="user_id" tableName="product_review">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-29">
+        <createIndex indexName="user_id" tableName="user_address">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-30">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="bill" constraintName="bill_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_account" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-31">
+        <addForeignKeyConstraint baseColumnNames="promotion_id" baseTableName="bill" constraintName="bill_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_promotion" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-32">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="bill" constraintName="bill_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_address" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-33">
+        <addForeignKeyConstraint baseColumnNames="promotion_id" baseTableName="product_category" constraintName="product_category_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_promotion" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-34">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_favorite" constraintName="product_favorite_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_stock" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-35">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="product_favorite" constraintName="product_favorite_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_account" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-36">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_image" constraintName="product_image_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_stock" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-37">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="product_question" constraintName="product_question_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_account" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-38">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_question" constraintName="product_question_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_stock" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-39">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="product_review" constraintName="product_review_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_account" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-40">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_review" constraintName="product_review_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_stock" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-41">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_sale" constraintName="product_sale_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_stock" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-42">
+        <addForeignKeyConstraint baseColumnNames="bill_id" baseTableName="product_sale" constraintName="product_sale_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="bill" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-43">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product_stock" constraintName="product_stock_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_category" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-44">
+        <addForeignKeyConstraint baseColumnNames="promotion_id" baseTableName="product_stock" constraintName="product_stock_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product_promotion" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-45">
+        <addForeignKeyConstraint baseColumnNames="type" baseTableName="user_account" constraintName="user_account_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_type" validate="true"/>
+    </changeSet>
+    <changeSet author="naijab (generated)" id="1542402549220-46">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_address" constraintName="user_address_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_account" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
