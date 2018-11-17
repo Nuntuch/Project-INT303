@@ -15,7 +15,7 @@ public interface UserService {
 
     List<UserAccount> getAllUser();
 
-    boolean isActivate(String userId);
+    boolean isActivate(int userId);
 
-    boolean activeUser(String userId, String token);
+    boolean activeUser(int userId, String token);
 }
