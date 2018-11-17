@@ -2,7 +2,7 @@ package com.moommim.moommim_web.service.base;
 
 /**
  *
- * @author Ptry
+ * 
  */
 
 
