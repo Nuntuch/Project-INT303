@@ -1,6 +1,7 @@
 package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.model.UserAccount;
+import com.moommim.moommim_web.repository.UserAccountJpaController;
 import com.moommim.moommim_web.service.base.AuthenticationService;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.net.PasswordAuthentication;
@@ -20,13 +21,15 @@ import sun.rmi.transport.Transport;
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    @PersistenceUnit(unitName = "com.moommim_moommim_web_war_1.0-SNAPSHOTPU")
-    EntityManagerFactory emf;
 
-    @Resource
-    UserTransaction utx;
-
+    private  UserAccountJpaController userAccountJpaCtrl ;
     
+    @Override
+    public void setJpaController(EntityManagerFactory emf, UserTransaction utx) {
+          
+        userAccountJpaCtrl = new UserAccountJpaController(utx, emf);
+          
+    } 
 
     @Override
     public UserAccount login(String username, String password) {
@@ -99,5 +102,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return false;
 
     }
+
+   
 
 }
