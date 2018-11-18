@@ -55,14 +55,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     }
 
+    @Override
+    public boolean isLogin(HttpSession session) {
 
-@Override
-        public boolean isLogin(HttpSession session) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (session != null) {
+            if (session.getAttribute("UserAccountObj") != null) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     @Override
-        public boolean ForgoutPassword(String username) {
+    public boolean ForgoutPassword(String username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
