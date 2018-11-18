@@ -18,7 +18,7 @@ public class ExampleServiceImpl implements ExampleService {
     
     @Override
     public String getGreeting() {
-        return "Hello World";
+        return "Hello World Line";
     }
 
 }
