@@ -1,4 +1,3 @@
-
 package com.moommim.moommim_web.repository;
 
 import java.io.Serializable;
@@ -431,6 +430,18 @@ public class UserAccountJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+// Add Find By Email
+
+    public UserAccount findUserAccountByEmail(String email) {
+
+        EntityManager em = getEntityManager();
+
+        Query q = em.createNamedQuery("UserAccount.findByEmail");
+        UserAccount userAccount = (UserAccount) q.setParameter("email", email);
+
+        return userAccount;
     }
 
     public int getUserAccountCount() {
