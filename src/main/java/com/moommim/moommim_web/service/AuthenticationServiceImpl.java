@@ -78,23 +78,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public boolean forgotPassword(String username) {
 
         if (username != null && username.trim().length() > 0) {
-
-//            List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
-            List<UserAccount> userAccountList = null;
-
-            for (UserAccount userAccount : userAccountList) {
-                if (userAccount.getEmail().equals(username)) {
-
-                    try {
-                        //คำสั่งส่งEmail
-
-                        return true;
-                    } catch (Exception e) {
-                        return false;
-                    }
+            UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
+            if (userAccountObj != null) {
+                try {
+                    //คำสั่งส่งเมล
+                    return true;
+                } catch (Exception e) {
+                    return false;
 
                 }
+
             }
+
         }
 
         return false;
