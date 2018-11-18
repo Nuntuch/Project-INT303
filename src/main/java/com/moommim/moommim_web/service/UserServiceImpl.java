@@ -1,14 +1,30 @@
 package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.model.UserAccount;
+import com.moommim.moommim_web.repository.UserAccountJpaController;
 import com.moommim.moommim_web.service.base.UserService;
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.transaction.UserTransaction;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
+
+    private UserAccountJpaController userAccountJpaController;
+
+    public void setJpa(EntityManagerFactory emf, UserTransaction utx) {
+        userAccountJpaController = new UserAccountJpaController(utx, emf);
+    }
 
     @Override
     public boolean createUser(UserAccount userAccount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        try {
+            userAccountJpaController.create(userAccount);
+            result = true;
+        } catch (Exception ex) {
+            result = false;
+        }
+        return result;
     }
 
     @Override
@@ -40,5 +56,5 @@ public class UserServiceImpl implements UserService{
     public boolean activeUser(int userId, String token) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
