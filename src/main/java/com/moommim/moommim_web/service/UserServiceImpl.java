@@ -29,7 +29,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean editUser(UserAccount editAccount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        try {
+            userAccountJpaController.edit(editAccount);
+            result = true;
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
     }
 
     @Override
