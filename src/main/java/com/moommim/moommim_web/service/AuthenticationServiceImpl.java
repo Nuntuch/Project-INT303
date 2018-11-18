@@ -1,7 +1,6 @@
 package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.model.UserAccount;
-import com.moommim.moommim_web.model.controller.UserAccountJpaController;
 import com.moommim.moommim_web.service.base.AuthenticationService;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.net.PasswordAuthentication;
@@ -27,7 +26,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Resource
     UserTransaction utx;
 
-    private UserAccountJpaController accountJpaController = new UserAccountJpaController(utx, emf);
+    
 
     @Override
     public UserAccount login(String username, String password) {
@@ -35,7 +34,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (username != null && username.trim().length() > 0
                 && password != null && password.trim().length() > 0) {
 
-            List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
+//            List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
+            List<UserAccount> userAccountList = null;
 
             for (UserAccount userAccount : userAccountList) {
                 if (userAccount.getEmail().equals(username)) {
@@ -78,7 +78,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         if (username != null && username.trim().length() > 0) {
 
-            List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
+//            List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
+            List<UserAccount> userAccountList = null;
 
             for (UserAccount userAccount : userAccountList) {
                 if (userAccount.getEmail().equals(username)) {
