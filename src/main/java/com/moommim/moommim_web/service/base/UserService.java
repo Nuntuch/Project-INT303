@@ -9,7 +9,7 @@ public interface UserService {
 
     boolean editUser(UserAccount editAccount);
 
-    boolean deleteUser(UserAccount deleteAccount);
+    boolean deleteUserById(int userId);
 
     UserAccount getUserById(int userId);
 
