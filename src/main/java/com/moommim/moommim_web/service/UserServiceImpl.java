@@ -59,12 +59,24 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<UserAccount> getAllUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<UserAccount> allUser = userAccountJpaController.findUserAccountEntities();
+        return allUser;
     }
 
     @Override
     public boolean isActivate(int userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        try {
+            UserAccount user = userAccountJpaController.findUserAccount(userId);
+            if(user.getActiveStatus()!=null){
+                user.setActiveToken("activeToken");
+                result = true;
+            }
+            
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
     }
 
     @Override
