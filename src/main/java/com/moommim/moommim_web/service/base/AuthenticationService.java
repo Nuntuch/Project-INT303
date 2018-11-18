@@ -3,7 +3,7 @@ package com.moommim.moommim_web.service.base;
 import com.moommim.moommim_web.model.UserAccount;
 import javax.servlet.http.HttpSession;
 
-public interface AuthenticationService {
+public interface AuthenticationService extends BaseService{
 
     UserAccount login(String username, String password);
     
