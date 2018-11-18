@@ -53,7 +53,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserAccount getUserById(int userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UserAccount user = userAccountJpaController.findUserAccount(userId);
+        return user;
     }
 
     @Override
