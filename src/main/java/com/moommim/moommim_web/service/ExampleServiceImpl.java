@@ -1,25 +1,47 @@
 package com.moommim.moommim_web.service;
 
-import com.moommim.moommim_web.repository.BillJpaController;
+import com.moommim.moommim_web.repository.AdsRepository;
+import com.moommim.moommim_web.model.Ads;
 import com.moommim.moommim_web.service.base.ExampleService;
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManagerFactory;
-import javax.transaction.UserTransaction;
+import java.util.List;
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 
-@ApplicationScoped
 public class ExampleServiceImpl implements ExampleService {
-    
-    private BillJpaController billJpaController;
-           
+
+    @Inject
+    private AdsRepository adsRepo;
+
     @Override
-    public void setJpaController(EntityManagerFactory emf, UserTransaction utx) {
-        billJpaController = new BillJpaController(utx, emf);
+    public Ads getAdsById(int id) {
+        return adsRepo.findById(id);
     }
-    
+
     @Override
-    public String getGreeting() {
-        billJpaController.getBillCount();
-        return "Hello World";
+    public List<Ads> getAllAds() {
+        return adsRepo.findAll();
+    }
+
+    @Override
+    public List<Ads> getAllAdsByPosition(String position) {
+        return adsRepo.findByPosition(position);
+    }
+
+    @Override
+    public List<Ads> getAllAdsByType(String type) {
+        return adsRepo.findByType(type);
+    }
+
+    @Transactional
+    @Override
+    public Ads updateAds(Ads adsModel) {
+        return adsRepo.save(adsModel);
+    }
+
+    @Transactional
+    @Override
+    public boolean removeAdsById(int id) {
+        return adsRepo.removeById(id) > 0;
     }
 
 }
