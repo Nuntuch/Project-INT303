@@ -12,7 +12,7 @@ public class ExampleServiceImpl implements ExampleService {
     private BillJpaController billJpaController;
            
     @Override
-    public void setJpa(EntityManagerFactory emf, UserTransaction utx) {
+    public void setJpaController(EntityManagerFactory emf, UserTransaction utx) {
         billJpaController = new BillJpaController(utx, emf);
     }
     
