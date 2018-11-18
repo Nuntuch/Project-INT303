@@ -24,6 +24,11 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     
     @Override
     public UserAccount login(String username, String password) {
+       
+        if(username != null && username.trim().length()>0
+                && password != null && password.trim().length()>0
+                ){
+        
         UserAccountJpaController accountJpaController = new UserAccountJpaController(utx, emf);
         List <UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
         
@@ -34,6 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
                 }
                 
             }
+        }
         }
         return null;
         
