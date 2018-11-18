@@ -18,7 +18,6 @@ public class ExampleServiceImpl implements ExampleService {
     
     @Override
     public String getGreeting() {
-        billJpaController.getBillCount();
         return "Hello World";
     }
 
