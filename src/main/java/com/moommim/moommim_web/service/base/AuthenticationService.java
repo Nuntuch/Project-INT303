@@ -11,6 +11,6 @@ public interface AuthenticationService {
     
     boolean isLogin(HttpSession session);
     
-    boolean ForgoutPassword(String username,String password,String newpassword);
+    boolean ForgoutPassword(String username);
     
 }
