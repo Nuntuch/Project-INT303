@@ -21,6 +21,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Resource
     UserTransaction utx;
+    
+   private UserAccountJpaController accountJpaController = new UserAccountJpaController(utx, emf);
 
     @Override
     public UserAccount login(String username, String password) {
@@ -28,7 +30,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (username != null && username.trim().length() > 0
                 && password != null && password.trim().length() > 0) {
 
-            UserAccountJpaController accountJpaController = new UserAccountJpaController(utx, emf);
             List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
 
             for (UserAccount userAccount : userAccountList) {
@@ -72,14 +73,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         if (username != null && username.trim().length() > 0) {
 
-            UserAccountJpaController accountJpaController = new UserAccountJpaController(utx, emf);
             List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
 
             for (UserAccount userAccount : userAccountList) {
                 if (userAccount.getEmail().equals(username)) {
 
                     try {
-
                         //คำสั่งส่งEmail
                         return true;
                     } catch (Exception e) {
