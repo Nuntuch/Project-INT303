@@ -69,7 +69,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public boolean ForgoutPassword(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (username != null && username.trim().length() > 0) {
+
+            UserAccountJpaController accountJpaController = new UserAccountJpaController(utx, emf);
+            List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
+
+            for (UserAccount userAccount : userAccountList) {
+                if (userAccount.getEmail().equals(username)) {
+
+                    try {
+
+                        //คำสั่งส่งEmail
+                        return true;
+                    } catch (Exception e) {
+                        return false;
+                    }
+
+                }
+            }
+        }
+        return false;
+
     }
 
 }
