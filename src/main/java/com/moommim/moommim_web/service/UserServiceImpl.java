@@ -81,7 +81,16 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean activeUser(int userId, String token) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        try {
+            UserAccount user = userAccountJpaController.findUserAccount(userId);
+            user.getActiveToken();
+            user.setActiveStatus("status");
+            result = true;
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
     }
 
 }
