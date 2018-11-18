@@ -29,23 +29,25 @@ public class LoginServlet extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        UserAccount userAccountObj = authenticationService.login(email, password);
-
-        if (userAccountObj != null) {
-            HttpServletRequest session = (HttpServletRequest) request.getSession();
-            session.setAttribute("userAccountObj", userAccountObj);
-            sendToPage(Path.INDEX_VIEW, request, response);
-
-        }
-
+        sendToPage(Path.INDEX_VIEW, request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        UserAccount userAccount = authenticationService.login(email, password);
+
+        if (userAccount != null) {
+            request.getSession().setAttribute("userAccount", userAccount);
+            
+//        sendToPage(Path.INDEX_VIEW, request, response);
+
+        }
+//        sendToPage(Path.INDEX_VIEW, request, response);
 
     }
 
