@@ -1,5 +1,6 @@
 package com.moommim.moommim_web.controller;
 
+import com.google.gson.Gson;
 import com.moommim.moommim_web.config.Path;
 import com.moommim.moommim_web.controller.base.BaseController;
 import com.moommim.moommim_web.service.base.ExampleService;
@@ -18,7 +19,7 @@ public class ExampleServlet extends BaseController {
 
     @Override
     public void init() throws ServletException {
-        exampleService.setJpa(emf, utx);
+        exampleService.setJpaController(emf, utx);
     }
 
     @Override
@@ -26,7 +27,8 @@ public class ExampleServlet extends BaseController {
             throws ServletException, IOException {
         String greeting = exampleService.getGreeting();
         request.setAttribute("greeting", greeting);
-        request.getRequestDispatcher(Path.INDEX_VIEW).forward(request, response);
+//        sendResponseToJson(response, greeting);
+        sendToPage(Path.INDEX_VIEW, request, response);
     }
 
     @Override
