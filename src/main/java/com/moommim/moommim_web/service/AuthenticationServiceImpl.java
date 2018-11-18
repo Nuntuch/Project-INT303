@@ -21,36 +21,34 @@ import sun.rmi.transport.Transport;
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
 
+    private UserAccountJpaController userAccountJpaCtrl;
 
-    private  UserAccountJpaController userAccountJpaCtrl ;
-    
     @Override
     public void setJpaController(EntityManagerFactory emf, UserTransaction utx) {
-          
+
         userAccountJpaCtrl = new UserAccountJpaController(utx, emf);
-          
-    } 
+
+    }
 
     @Override
     public UserAccount login(String username, String password) {
 
         if (username != null && username.trim().length() > 0
                 && password != null && password.trim().length() > 0) {
+            UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
 
-//            List<UserAccount> userAccountList = accountJpaController.findUserAccountEntities();
-            List<UserAccount> userAccountList = null;
-
-            for (UserAccount userAccount : userAccountList) {
-                if (userAccount.getEmail().equals(username)) {
-                    if (userAccount.getPassword().equals(password)) {
-                        return userAccount;
+            if (userAccountObj != null) {
+                if (userAccountObj.getEmail().equals(username)) {
+                    if (userAccountObj.getPassword().equals(password)) {
+                        return userAccountObj;
                     }
 
                 }
+
             }
+
         }
         return null;
-
     }
 
     @Override
@@ -89,7 +87,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
                     try {
                         //คำสั่งส่งEmail
-                  
+
                         return true;
                     } catch (Exception e) {
                         return false;
@@ -102,7 +100,5 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return false;
 
     }
-
-   
 
 }
