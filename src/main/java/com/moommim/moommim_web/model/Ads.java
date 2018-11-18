@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -7,25 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "ADS")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Ads.findAll", query = "SELECT a FROM Ads a")
-    , @NamedQuery(name = "Ads.findById", query = "SELECT a FROM Ads a WHERE a.id = :id")
-    , @NamedQuery(name = "Ads.findByName", query = "SELECT a FROM Ads a WHERE a.name = :name")
-    , @NamedQuery(name = "Ads.findByDescription", query = "SELECT a FROM Ads a WHERE a.description = :description")
-    , @NamedQuery(name = "Ads.findByType", query = "SELECT a FROM Ads a WHERE a.type = :type")
-    , @NamedQuery(name = "Ads.findByPosition", query = "SELECT a FROM Ads a WHERE a.position = :position")
-    , @NamedQuery(name = "Ads.findByGenderTarget", query = "SELECT a FROM Ads a WHERE a.genderTarget = :genderTarget")
-    , @NamedQuery(name = "Ads.findByIsShow", query = "SELECT a FROM Ads a WHERE a.isShow = :isShow")})
 public class Ads implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -159,5 +147,5 @@ public class Ads implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.Ads[ id=" + id + " ]";
     }
-    
+
 }
