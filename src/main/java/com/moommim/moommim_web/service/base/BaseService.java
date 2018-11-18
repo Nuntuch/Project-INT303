@@ -5,6 +5,6 @@ import javax.transaction.UserTransaction;
 
 public interface BaseService {
     
-    void setJpa(EntityManagerFactory emf, UserTransaction utx);
+    void setJpaController(EntityManagerFactory emf, UserTransaction utx);
     
 }
