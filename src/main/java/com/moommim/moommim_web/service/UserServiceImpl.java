@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.UserTransaction;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
     private UserAccountJpaController userAccountJpaController;
 
@@ -41,7 +41,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean deleteUserById(int userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean result = false;
+        try {
+            userAccountJpaController.destroy(userId);
+            result = true;
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
     }
 
     @Override
