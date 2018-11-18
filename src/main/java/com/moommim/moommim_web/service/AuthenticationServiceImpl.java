@@ -3,6 +3,7 @@ package com.moommim.moommim_web.service;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.repository.UserAccountJpaController;
 import com.moommim.moommim_web.service.base.AuthenticationService;
+import com.moommim.moommim_web.util.Util;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.net.PasswordAuthentication;
 import java.util.List;
@@ -35,8 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public UserAccount login(String username, String password) {
 
-        if (username != null && username.trim().length() > 0
-                && password != null && password.trim().length() > 0) {
+        if (Util.isNotEmpty(username) && Util.isNotEmpty(password)) {
             UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
 
             if (userAccountObj != null) {
@@ -79,7 +79,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public boolean forgotPassword(String username) {
 
-        if (username != null && username.trim().length() > 0) {
+        if (Util.isNotEmpty(username)) {
             UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
             if (userAccountObj != null) {
                 try {
