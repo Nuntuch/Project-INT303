@@ -8,6 +8,7 @@ import java.net.PasswordAuthentication;
 import java.util.List;
 import java.util.Properties;
 import javax.annotation.Resource;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import sun.rmi.transport.Transport;
  *
  * @author Nuntuch Thongyoo
  */
+@ApplicationScoped
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private UserAccountJpaController userAccountJpaCtrl;
