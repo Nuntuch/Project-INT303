@@ -22,11 +22,6 @@ public class LoginServlet extends BaseController {
     private AuthenticationService authenticationService;
 
     @Override
-    public void init() throws ServletException {
-        authenticationService.setJpaController(emf, utx);
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         sendToPage(Path.INDEX_VIEW, request, response);
