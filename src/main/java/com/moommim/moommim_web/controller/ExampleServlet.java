@@ -23,10 +23,15 @@ public class ExampleServlet extends BaseController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            List<Ads> ads = exampleService.getAllAdsByType("normal");
-            if (Util.isNotEmpty(ads)) {
-                for (Ads ad : ads) {
-                    System.out.println("Item : " + ad.getName());
+            List<Ads> ads = exampleService.getAllAds();
+            Ads ad = exampleService.getAdsById(2);
+            if (Util.isNotEmpty(ad)) {
+//                System.out.println("Ads Before Update: " + ad.getName());
+//                ad.setName("Lazada.co.th");
+//                ad = exampleService.updateAds(ad);
+//                System.out.println("Ads After Update: " + ad.getName());
+                for (Ads ad1 : ads) {
+                    System.out.println("Ads List: " + ad1.getName());
                 }
             }
         } catch (NoResultException ex) {

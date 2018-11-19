@@ -32,13 +32,11 @@ public class ExampleServiceImpl implements ExampleService {
         return adsRepo.findByType(type);
     }
 
-    @Transactional
     @Override
     public Ads updateAds(Ads adsModel) {
         return adsRepo.save(adsModel);
     }
 
-    @Transactional
     @Override
     public boolean removeAdsById(int id) {
         return adsRepo.removeById(id) > 0;
