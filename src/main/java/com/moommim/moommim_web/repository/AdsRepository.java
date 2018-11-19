@@ -2,9 +2,11 @@ package com.moommim.moommim_web.repository;
 
 import com.moommim.moommim_web.model.Ads;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.apache.deltaspike.data.api.AbstractEntityRepository;
 import org.apache.deltaspike.data.api.Repository;
 
+@Transactional
 @Repository
 public abstract class AdsRepository extends AbstractEntityRepository<Ads, Integer> {
     
