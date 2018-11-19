@@ -1,47 +1,37 @@
 package com.moommim.moommim_web.service;
 
+import com.moommim.moommim_web.config.App;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.repository.UserAccountJpaController;
 import com.moommim.moommim_web.service.base.AuthenticationService;
 import com.moommim.moommim_web.util.Util;
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import java.net.PasswordAuthentication;
-import java.util.List;
-import java.util.Properties;
-import javax.annotation.Resource;
-import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
-import javax.websocket.Session;
-import sun.rmi.transport.Transport;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/**
- *
- * @author Nuntuch Thongyoo
- */
-@ApplicationScoped
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private UserAccountJpaController userAccountJpaCtrl;
 
+    public void setJpa(EntityManagerFactory emf, UserTransaction utx) {
+
+        userAccountJpaCtrl = new UserAccountJpaController(utx, emf);
+
+    }
+
     @Override
     public UserAccount login(String username, String password) {
-
         if (Util.isNotEmpty(username) && Util.isNotEmpty(password)) {
             UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
-
             if (userAccountObj != null) {
-                if (userAccountObj.getEmail().equals(username)) {
-                    if (userAccountObj.getPassword().equals(password)) {
-                        return userAccountObj;
-                    }
-
+                System.out.println("Email : " + userAccountObj.getEmail());
+                BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+                String passwordFromDB = userAccountObj.getPassword();
+                if (bCrypt.matches(password + App.SALT, passwordFromDB)) {
+                    return userAccountObj;
                 }
-
             }
-
         }
         return null;
     }
