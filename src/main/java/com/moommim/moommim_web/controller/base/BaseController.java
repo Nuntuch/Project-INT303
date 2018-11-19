@@ -25,6 +25,11 @@ public abstract class BaseController extends HttpServlet {
         request.getRequestDispatcher(path).forward(request, response);
     }
 
+    protected final void sendRedirectToPage(String path, HttpServletResponse response)
+            throws IOException, ServletException {
+        response.sendRedirect(path);
+    }
+
     protected final void sendResponseToJson(HttpServletResponse response, Object json) throws IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
