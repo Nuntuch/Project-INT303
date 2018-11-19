@@ -27,13 +27,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private UserAccountJpaController userAccountJpaCtrl;
 
     @Override
-    public void setJpaController(EntityManagerFactory emf, UserTransaction utx) {
-
-        userAccountJpaCtrl = new UserAccountJpaController(utx, emf);
-
-    }
-
-    @Override
     public UserAccount login(String username, String password) {
 
         if (Util.isNotEmpty(username) && Util.isNotEmpty(password)) {
