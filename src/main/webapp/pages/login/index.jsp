@@ -13,7 +13,7 @@
     </jsp:attribute>
     <jsp:body>
         <h1>Login :</h1>
-        <form action="Login" method="post">
+        <form action="login" method="post">
          
             Email : <input type="email" required name="email" />
             Password : <input type="password" required name="password" />
