@@ -3,6 +3,7 @@ package com.moommim.moommim_web.service;
 import com.moommim.moommim_web.config.App;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.repository.UserAccountJpaController;
+import com.moommim.moommim_web.repository.UserAccountJpaRepository;
 import com.moommim.moommim_web.service.base.AuthenticationService;
 import com.moommim.moommim_web.util.Util;
 import javax.inject.Inject;
@@ -21,12 +22,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 //
 //    }
     @Inject
-    private UserAccount
+    private UserAccountJpaRepository userAccountRepo;
     
     @Override
     public UserAccount login(String username, String password) {
         if (Util.isNotEmpty(username) && Util.isNotEmpty(password)) {
-            UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
+//            UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
+            UserAccount userAccountObj = userAccountRepo.findByEmail(username);
             if (userAccountObj != null) {
                 System.out.println("Email : " + userAccountObj.getEmail());
                 BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
@@ -66,7 +68,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public boolean forgotPassword(String username) {
 
         if (Util.isNotEmpty(username)) {
-            UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
+//            UserAccount userAccountObj = userAccountJpaCtrl.findUserAccountByEmail(username);
+            UserAccount userAccountObj = userAccountRepo.findByEmail(username);
             if (userAccountObj != null) {
                 try {
                     //คำสั่งส่งเมล

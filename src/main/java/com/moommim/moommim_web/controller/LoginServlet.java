@@ -26,10 +26,10 @@ public class LoginServlet extends BaseController {
     @Inject
     private AuthenticationServiceImpl authenticationService;
 
-    @Override
-    public void init() throws ServletException {
-        authenticationService.setJpa(emf, utx);
-    }
+//    @Override
+//    public void init() throws ServletException {
+//        authenticationService.setJpa(emf, utx);
+//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
