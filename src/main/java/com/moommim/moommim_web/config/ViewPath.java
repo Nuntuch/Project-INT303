@@ -11,5 +11,7 @@ public class ViewPath {
     public static final String INDEX_VIEW = BASE_PAGE + BASE_HOME_PAGE + "/index.jsp";
 
     public static final String LOGIN_VIEW = BASE_PAGE + BASE_LOGIN_PAGE + "/index.jsp";
+    
+    public static final String FORGOTPASSWORD_VIEW = BASE_PAGE + BASE_LOGIN_PAGE + "/forgotpassword.jsp";
 
 }
