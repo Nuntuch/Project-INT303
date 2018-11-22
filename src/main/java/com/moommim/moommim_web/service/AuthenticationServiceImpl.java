@@ -5,6 +5,7 @@ import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.repository.UserAccountJpaController;
 import com.moommim.moommim_web.service.base.AuthenticationService;
 import com.moommim.moommim_web.util.Util;
+import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
@@ -12,14 +13,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private UserAccountJpaController userAccountJpaCtrl;
-
-    public void setJpa(EntityManagerFactory emf, UserTransaction utx) {
-
-        userAccountJpaCtrl = new UserAccountJpaController(utx, emf);
-
-    }
-
+//    private UserAccountJpaController userAccountJpaCtrl;
+//
+//    public void setJpa(EntityManagerFactory emf, UserTransaction utx) {
+//
+//        userAccountJpaCtrl = new UserAccountJpaController(utx, emf);
+//
+//    }
+    @Inject
+    private UserAccount
+    
     @Override
     public UserAccount login(String username, String password) {
         if (Util.isNotEmpty(username) && Util.isNotEmpty(password)) {
