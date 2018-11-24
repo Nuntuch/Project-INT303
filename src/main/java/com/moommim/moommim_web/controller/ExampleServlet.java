@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ExampleServlet", urlPatterns = {"/example"})
 public class ExampleServlet extends BaseController {
-
-    private static final Logger LOGGER = Logger.getGlobal();
+    
+    private static final Logger LOGGER = Logger.getLogger(ExampleServlet.class.getName());;
 
     @Inject
     private MailService mailService;

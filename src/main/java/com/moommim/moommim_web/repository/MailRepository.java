@@ -10,7 +10,7 @@ import org.simplejavamail.mailer.MailerBuilder;
 
 public class MailRepository {
 
-    private static final Logger LOGGER = Logger.getGlobal();
+    private static final Logger LOGGER = Logger.getLogger(MailRepository.class.getName());
 
     public boolean send(String fromEmail, String fromEmailPassword, String toEmail, MailMessage mailMessage) {
         boolean sendResult = false;
