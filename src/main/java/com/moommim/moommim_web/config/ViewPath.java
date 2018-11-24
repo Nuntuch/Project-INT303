@@ -1,6 +1,6 @@
 package com.moommim.moommim_web.config;
 
-public class Path {
+public class ViewPath {
 
     public static final String BASE_PAGE = "/pages";
     

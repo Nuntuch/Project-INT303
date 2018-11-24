@@ -1,6 +1,6 @@
 package com.moommim.moommim_web.controller;
 
-import com.moommim.moommim_web.config.Path;
+import com.moommim.moommim_web.config.ViewPath;
 import com.moommim.moommim_web.controller.base.BaseController;
 import com.moommim.moommim_web.model.MailMessage;
 import com.moommim.moommim_web.service.base.MailService;
@@ -27,7 +27,7 @@ public class ExampleServlet extends BaseController {
 //            LOGGER.fine("Send mail is success");
 //        }
 
-        sendToPage(Path.INDEX_VIEW, request, response);
+        sendToPage(ViewPath.INDEX_VIEW, request, response);
     }
 
     @Override
