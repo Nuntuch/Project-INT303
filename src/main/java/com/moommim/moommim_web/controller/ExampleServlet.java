@@ -1,5 +1,6 @@
 package com.moommim.moommim_web.controller;
 
+import com.moommim.moommim_web.config.Path;
 import com.moommim.moommim_web.controller.base.BaseController;
 import com.moommim.moommim_web.model.MailMessage;
 import com.moommim.moommim_web.service.base.MailService;
@@ -22,9 +23,11 @@ public class ExampleServlet extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (mailService.sendMail("nainatjab999@gmail.com", new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1>"))) {
-            LOGGER.fine("Send mail is success");
-        }
+//        if (mailService.sendMail("nainatjab999@gmail.com", new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1>"))) {
+//            LOGGER.fine("Send mail is success");
+//        }
+
+        sendToPage(Path.INDEX_VIEW, request, response);
     }
 
     @Override
