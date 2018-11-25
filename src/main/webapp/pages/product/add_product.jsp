@@ -9,7 +9,7 @@
     keywordPage="computer, notebook, smartphone, tablet">
     <jsp:body>
 
-        <form method="post" action="upload" enctype="multipart/form-data">
+        <form method="post" action="admin-upload" enctype="multipart/form-data">
             Choose a file: <input type="file" name="multiPartServlet" />
             <input type="submit" value="Upload" />
         </form>
