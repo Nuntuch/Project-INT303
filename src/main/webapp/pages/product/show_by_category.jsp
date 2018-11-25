@@ -14,39 +14,48 @@
 
     </jsp:attribute>
     <jsp:body>
-
-        <div class="ui basic segment">
-            <div class="ui breadcrumb">
-                <a class="section" href="${request.contextPath}">หน้าแรก</a>
-                <i class="right angle icon divider"></i>
-                <div class="active section">${categoryName}</div>
-            </div>
-        </div>
-
-        <c:if test="${not empty status}">
-            <div class="ui placeholder segment">
-                <div class="ui icon header">
-                    <i class="frown outline icon"></i>
-                    ${status}
+        
+        <c:choose>
+            <c:when test="${not empty status}">
+                <div class="ui placeholder segment">
+                    <div class="ui icon header">
+                        <i class="frown outline icon"></i>
+                        ${status}
+                    </div>
                 </div>
-            </div>
-        </c:if>
-
-        <div class="ui four stackable cards">
-            <c:forEach items="${productStockListByCategory}" var="item">
-                <a class="ui card link" href="product?id=${item.id}">
-                    <div class="image">
-                        <img src="https://via.placeholder.com/300" />
+            </c:when>
+            <c:otherwise>
+                <div class="ui basic segment">
+                    <div class="ui breadcrumb">
+                        <a class="section" href="${request.contextPath}">หน้าแรก</a>
+                        <i class="right angle icon divider"></i>
+                        <div class="active section">${categoryName}</div>
                     </div>
-                    <div class="content">
-                        <div class="header">${item.name}</div>
-                        <div class="description">
-                            <h3 class="ui header orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.price}"/></h3>
-                        </div> 
-                    </div>
-                </a>
-            </c:forEach>
-        </div>
+                </div>
 
+                <h2 class="ui center aligned segment header">
+                    <div class="content ">
+                        ${categoryName}
+                    </div>
+                </h2>
+
+                <div class="ui four stackable cards">
+                    <c:forEach items="${productStockListByCategory}" var="item">
+                        <a class="ui card link" href="product?id=${item.id}">
+                            <div class="image">
+                                <img src="https://via.placeholder.com/300" />
+                            </div>
+                            <div class="content">
+                                <div class="header">${item.name}</div>
+                                <div class="description">
+                                    <h3 class="ui header orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.price}"/></h3>
+                                </div> 
+                            </div>
+                        </a>
+                    </c:forEach>
+                </div>
+            </c:otherwise>
+        </c:choose>
+        
     </jsp:body>
 </t:master-layout>
