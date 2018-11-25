@@ -3,6 +3,7 @@
 $(document)
         .ready(function () {
             handleDropDown();
+            handleCardDimmer();
         });
 
 function handleDropDown() {
@@ -16,6 +17,14 @@ function handleDropDown() {
                         .siblings()
                         .removeClass('active')
                         ;
+            })
+            ;
+}
+
+function handleCardDimmer() {
+    $('.card .dimmer')
+            .dimmer({
+                on: 'hover'
             })
             ;
 }
