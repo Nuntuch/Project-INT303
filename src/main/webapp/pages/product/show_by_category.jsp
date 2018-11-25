@@ -14,22 +14,39 @@
 
     </jsp:attribute>
     <jsp:body>
-        <div class="row">
-            <div class="ui four stackable cards">
-                <c:forEach items="${productStockListByCategory}" var="item">
-                    <a class="ui card link" href="product?id=${item.id}">
-                        <div class="image">
-                            <img src="https://via.placeholder.com/300" />
-                        </div>
-                        <div class="content">
-                            <div class="header">${item.name}</div>
-                            <div class="description">
-                                <h3 class="orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.price}"/></h3>
-                            </div> 
-                        </div>
-                    </a>
-                </c:forEach>
+
+        <div class="ui basic segment">
+            <div class="ui breadcrumb">
+                <a class="section" href="${request.contextPath}">หน้าแรก</a>
+                <i class="right angle icon divider"></i>
+                <div class="active section">${categoryName}</div>
             </div>
         </div>
+
+        <c:if test="${not empty status}">
+            <div class="ui placeholder segment">
+                <div class="ui icon header">
+                    <i class="frown outline icon"></i>
+                    ${status}
+                </div>
+            </div>
+        </c:if>
+
+        <div class="ui four stackable cards">
+            <c:forEach items="${productStockListByCategory}" var="item">
+                <a class="ui card link" href="product?id=${item.id}">
+                    <div class="image">
+                        <img src="https://via.placeholder.com/300" />
+                    </div>
+                    <div class="content">
+                        <div class="header">${item.name}</div>
+                        <div class="description">
+                            <h3 class="ui header orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.price}"/></h3>
+                        </div> 
+                    </div>
+                </a>
+            </c:forEach>
+        </div>
+
     </jsp:body>
 </t:master-layout>
