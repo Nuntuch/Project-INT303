@@ -29,16 +29,25 @@ public class ProductCategoryServlet extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<ProductStock> productStockListByCategory = productService.getAllProductByCategoryId(2, CommonConstant.SHOW);
-        if (Util.isNotEmpty(productStockListByCategory)) {
-            request.setAttribute("productStockListByCategory", productStockListByCategory);
-        }
-        sendToPage(ViewPath.PRODUCT_BY_CATEGORY_VIEW, request, response);
+        showProductWithCategory(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void showProductWithCategory(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String categoryIdParam = request.getParameter("id");
+        if (Util.isNotEmpty(categoryIdParam)) {
+            int categoryId = Integer.parseInt(categoryIdParam);
+            List<ProductStock> productStockListByCategory = productService.getAllProductByCategoryId(categoryId, CommonConstant.SHOW);
+            if (Util.isNotEmpty(productStockListByCategory)) {
+                request.setAttribute("categoryName", productStockListByCategory.get(0).getCategoryId().getName());
+                request.setAttribute("productStockListByCategory", productStockListByCategory);
+            } else {
+                request.setAttribute("status", "ไม่พบสินค้า");
+            }
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+        sendToPage(ViewPath.PRODUCT_BY_CATEGORY_VIEW, request, response);
     }
 
 }
