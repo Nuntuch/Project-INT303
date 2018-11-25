@@ -4,6 +4,7 @@ $(document)
         .ready(function () {
             handleDropDown();
             handleCardDimmer();
+            handleRating();
         });
 
 function handleDropDown() {
@@ -22,9 +23,18 @@ function handleDropDown() {
 }
 
 function handleCardDimmer() {
+    $('.special.card .image').dimmer({
+        on: 'hover'
+    });
     $('.card .dimmer')
             .dimmer({
                 on: 'hover'
             })
+            ;
+}
+
+function handleRating() {
+    $('.star.rating')
+            .rating()
             ;
 }
