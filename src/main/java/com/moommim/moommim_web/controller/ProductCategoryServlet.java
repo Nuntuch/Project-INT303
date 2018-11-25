@@ -1,7 +1,6 @@
 package com.moommim.moommim_web.controller;
 
 import com.moommim.moommim_web.config.CommonConstant;
-import com.moommim.moommim_web.config.ProductStatusConstant;
 import com.moommim.moommim_web.config.ServletPath;
 import com.moommim.moommim_web.config.ViewPath;
 import com.moommim.moommim_web.controller.base.BaseController;
