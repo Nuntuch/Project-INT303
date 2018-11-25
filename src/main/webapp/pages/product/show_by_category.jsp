@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
@@ -13,8 +14,22 @@
 
     </jsp:attribute>
     <jsp:body>
-        <c:forEach items="${productStockListByCategory}" var="item">
-            <li>${item.name} | ${item.categoryId.name} => ${item.isShow}</li>
-        </c:forEach>
+        <div class="row">
+            <div class="ui four stackable cards">
+                <c:forEach items="${productStockListByCategory}" var="item">
+                    <a class="ui card link" href="product?id=${item.id}">
+                        <div class="image">
+                            <img src="https://via.placeholder.com/300" />
+                        </div>
+                        <div class="content">
+                            <div class="header">${item.name}</div>
+                            <div class="description">
+                                <h3 class="orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.price}"/></h3>
+                            </div> 
+                        </div>
+                    </a>
+                </c:forEach>
+            </div>
+        </div>
     </jsp:body>
 </t:master-layout>
