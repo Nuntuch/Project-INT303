@@ -19,7 +19,7 @@ public abstract class ProductStockRepository extends AbstractEntityRepository<Pr
 
     public abstract List<ProductStock> findByCategoryId_id(int categoryId);
     
-    public abstract List<ProductStock> findByCategoryId_idAndStatusAndIsShow(int categoryId, String status, String isShow);
+    public abstract List<ProductStock> findByCategoryId_idAndIsShow(int categoryId, String isShow);
 
     public abstract int removeById(int id);
 

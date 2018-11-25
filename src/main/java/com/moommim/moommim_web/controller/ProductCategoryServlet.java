@@ -29,7 +29,7 @@ public class ProductCategoryServlet extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<ProductStock> productStockListByCategory = productService.getAllProductByCategoryId(2, ProductStatusConstant.STATUS_IN_STOCK, CommonConstant.SHOW);
+        List<ProductStock> productStockListByCategory = productService.getAllProductByCategoryId(2, CommonConstant.SHOW);
         if (Util.isNotEmpty(productStockListByCategory)) {
             request.setAttribute("productStockListByCategory", productStockListByCategory);
         }

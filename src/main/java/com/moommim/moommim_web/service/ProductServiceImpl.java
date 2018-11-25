@@ -29,8 +29,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductStock> getAllProductByCategoryId(int categoryId, String status, String isShow) {
-        return productStockRepository.findByCategoryId_idAndStatusAndIsShow(categoryId, status, isShow);
+    public List<ProductStock> getAllProductByCategoryId(int categoryId) {
+        return productStockRepository.findByCategoryId_id(categoryId);
+    }
+
+    @Override
+    public List<ProductStock> getAllProductByCategoryId(int categoryId, String isShow) {
+        return productStockRepository.findByCategoryId_idAndIsShow(categoryId, isShow);
     }
 
     @Override

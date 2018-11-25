@@ -11,7 +11,9 @@ public interface ProductService extends BaseService {
 
     List<ProductStock> getAllProduct();
 
-    List<ProductStock> getAllProductByCategoryId(int categoryId, String status, String isShow);
+    List<ProductStock> getAllProductByCategoryId(int categoryId);
+
+    List<ProductStock> getAllProductByCategoryId(int categoryId, String isShow);
 
     boolean updateProduct(ProductStock product);
 
