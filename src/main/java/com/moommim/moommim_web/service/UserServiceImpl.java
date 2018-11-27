@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
         
         
         
-        
+        System.out.println("Test");
         
         try {
             UserAccount user = userAccountRepo.findBy(userId);
