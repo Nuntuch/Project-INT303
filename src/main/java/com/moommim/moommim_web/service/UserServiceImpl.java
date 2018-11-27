@@ -1,19 +1,12 @@
 package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.model.UserAccount;
-import com.moommim.moommim_web.repository.UserAccountJpaController;
 import com.moommim.moommim_web.service.base.UserService;
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
-import javax.transaction.UserTransaction;
 
 public class UserServiceImpl implements UserService{
 
-    private UserAccountJpaController userAccountJpaController;
 
-    public void setJpa(EntityManagerFactory emf, UserTransaction utx) {
-        userAccountJpaController = new UserAccountJpaController(utx, emf);
-    }
 
     @Override
     public boolean createUser(UserAccount userAccount) {
