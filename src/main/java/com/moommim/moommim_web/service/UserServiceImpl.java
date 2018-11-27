@@ -1,25 +1,28 @@
 package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.model.UserAccount;
+import com.moommim.moommim_web.repository.UserAccountJpaRepository;
 import com.moommim.moommim_web.service.base.UserService;
+import com.moommim.moommim_web.util.Util;
 import java.util.List;
 import javax.inject.Inject;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
-@Inject
-private UserAccount
+    @Inject
+    private UserAccountJpaRepository userAccountRepo;
 
     @Override
     public boolean createUser(UserAccount userAccount) {
-        boolean result = false;
-        try {
-            userAccountJpaController.create(userAccount);
-            result = true;
-        } catch (Exception ex) {
-            result = false;
+
+        UserAccount userAccountObj = userAccountRepo.save(userAccount);
+
+        if (Util.isNotEmpty(userAccountObj)) {
+            return true;
+
         }
-        return result;
+        return false;
+
     }
 
     @Override
@@ -63,11 +66,11 @@ private UserAccount
         boolean result = false;
         try {
             UserAccount user = userAccountJpaController.findUserAccount(userId);
-            if(user.getActiveStatus()!=null){
+            if (user.getActiveStatus() != null) {
                 user.setActiveToken("activeToken");
                 result = true;
             }
-            
+
         } catch (Exception e) {
             result = false;
         }
