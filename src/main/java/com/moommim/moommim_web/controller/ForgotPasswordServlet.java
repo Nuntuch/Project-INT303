@@ -14,28 +14,44 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ForgotPasswordServlet", urlPatterns = {"/forgot"})
 public class ForgotPasswordServlet extends BaseController {
-
+    
     @Inject
     private AuthenticationService authenticationService;
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String token = request.getParameter("token");
+        if (Util.isNotEmpty(token)) {
+            request.setAttribute("is_have_token", token);
+        }
+        
         sendToPage(ViewPath.FORGOTPASSWORD_VIEW, request, response);
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
         if (Util.isNotEmpty(email)) {
-            if (!authenticationService.forgotPassword(email)) {
-                request.setAttribute("status", "invalid email");
-            } else {
-                sendToPage(ServletPath.LOGIN_SERVLET, request, response);
-                return;
-            }
+            processForgotPassword(email, request, response);
+        }
+        
+        String password = request.getParameter("password");
+        if(Util.isNotEmpty(password)){
+//        ส่งไปหา UpdatePassword ที่ UserService
         }
         sendToPage(ViewPath.FORGOTPASSWORD_VIEW, request, response);
+    }
+    
+    private void processForgotPassword(String email, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if (!authenticationService.forgotPassword(email)) {
+            request.setAttribute("status", "invalid email");
+        } else {
+            sendRedirectToPage(ServletPath.LOGIN_SERVLET, response);
+            return;
+        }
+        
     }
 }
