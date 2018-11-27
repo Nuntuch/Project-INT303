@@ -14,7 +14,7 @@
 
     </jsp:attribute>
     <jsp:body>
-        
+
         <c:choose>
             <c:when test="${not empty status}">
                 <div class="ui placeholder segment">
@@ -29,33 +29,23 @@
                     <div class="ui breadcrumb">
                         <a class="section" href="${request.contextPath}">หน้าแรก</a>
                         <i class="right angle icon divider"></i>
-                        <div class="active section">${categoryName}</div>
+                        <a href="category?id=${category.id}" class="section">${category.name}</a>
+                        <i class="right angle icon divider"></i>
+                        <div class="active section">${title}</div>
                     </div>
                 </div>
 
                 <h2 class="ui center aligned segment header">
                     <div class="content ">
-                        ${categoryName}
+                        ${productById.name}
                     </div>
                 </h2>
 
-                <div class="ui four stackable cards">
-                    <c:forEach items="${productStockListByCategory}" var="item">
-                        <a class="ui card link" href="product?id=${item.id}">
-                            <div class="image">
-                                <img src="https://via.placeholder.com/300" />
-                            </div>
-                            <div class="content">
-                                <div class="header">${item.name}</div>
-                                <div class="description">
-                                    <h3 class="ui header orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.price}"/></h3>
-                                </div> 
-                            </div>
-                        </a>
-                    </c:forEach>
+                <div class="ui basic segment">
+                    ${productById.name} |  ${productById.price}
                 </div>
             </c:otherwise>
         </c:choose>
-        
+
     </jsp:body>
 </t:master-layout>
