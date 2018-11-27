@@ -9,24 +9,24 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class UserServiceImpl implements UserService {
-
+    
     @Inject
     private UserAccountRepository userAccountRepo;
-
+    
     @Override
     public boolean createUser(UserAccount userAccount) {
-
+        
         return Util.isNotEmpty(userAccountRepo.save(userAccount));
-
+        
     }
-
+    
     @Override
     public boolean editUser(UserAccount editAccount) {
-
+        
         return Util.isNotEmpty(userAccountRepo.save(editAccount));
-
+        
     }
-
+    
     @Override
     public boolean deleteUserById(int userId) {
 
@@ -39,23 +39,23 @@ public class UserServiceImpl implements UserService {
 //        }
         return userAccountRepo.removeById(userId);
     }
-
+    
     @Override
     public UserAccount getUserById(int userId) {
-
+        
         return userAccountRepo.findBy(userId);
     }
-
+    
     @Override
     public List<UserAccount> getAllUser() {
-
+        
         return userAccountRepo.findAll();
-
+        
     }
-
+    
     @Override
     public boolean isActivate(int userId) {
- 
+        
         try {
             UserAccount user = getUserById(userId);
             if (Util.isNotEmpty(user.getActiveStatus()) && user.getActiveStatus().equals(UserActivateConstant.ACTIVATED)) {
@@ -63,41 +63,29 @@ public class UserServiceImpl implements UserService {
                 return true;
             }
             return false;
-
+            
         } catch (Exception e) {
             return false;
         }
-
+        
     }
-
+    
     @Override
     public boolean activeUser(int userId, String token) {
-//        boolean result = false;
-//        try {
-//             UserAccount user = userAccountRepo.findBy(userId);
-//            user.getActiveToken();
-//            user.setActiveStatus("status");
-//            result = true;
-//        } catch (Exception e) {
-//            result = false;
-//        }
-//        return result;
-    
-         try {
-            UserAccount user = userAccountRepo.findBy(userId);
-            if (Util.isNotEmpty(user.getActiveStatus())) {
-//                user.setActiveToken("activeToken");
-                user.setActiveToken(token);
+        
+        try {
+            UserAccount user = getUserById(userId);
+            if (Util.isNotEmpty(user)) {
+                user.setActiveStatus(UserActivateConstant.ACTIVATED);
                 userAccountRepo.save(user);
                 return true;
             }
             return false;
-
+            
         } catch (Exception e) {
             return false;
         }
-    
-    
+        
     }
-
+    
 }
