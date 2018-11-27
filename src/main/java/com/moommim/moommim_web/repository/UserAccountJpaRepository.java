@@ -11,4 +11,6 @@ public abstract class UserAccountJpaRepository extends AbstractEntityRepository<
 
     public abstract UserAccount findByEmail(String email);
     
+    public abstract boolean removeById(int id);
+    
 }
