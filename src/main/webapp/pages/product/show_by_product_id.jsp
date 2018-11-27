@@ -29,6 +29,10 @@
                     <div class="ui breadcrumb">
                         <a class="section" href="${request.contextPath}">หน้าแรก</a>
                         <i class="right angle icon divider"></i>
+                        <c:if test="${not empty categoryParent}">
+                            <div class="section">${categoryParent.name}</div>
+                            <i class="right angle icon divider"></i>
+                        </c:if>
                         <a href="category?id=${category.id}" class="section">${category.name}</a>
                         <i class="right angle icon divider"></i>
                         <div class="active section">${title}</div>
