@@ -54,13 +54,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isActivate(int userId) {
-//        boolean result = false;
+
+        
+//        เช็คก่อนว่าเราหา user จาก id นี้เจอ
+//                ถ้าเจอ ให้เช็คว่า active ยัง
+//                        ไมเจอ return false
+//                        เจอ เข็คว่า Active ยัง
+//                              เจอ return true
+//                              ไม่เจอ false
+//                        
+//                        
+//                        
+//                        
+        
+        
+        
+        
+        
+        
         try {
-//            UserAccount user = userAccountJpaController.findUserAccount(userId);
             UserAccount user = userAccountRepo.findBy(userId);
-//            if (user.getActiveStatus() != null) {
-            if (Util.isNotEmpty(userAccountRepo.findBy(userId).getActiveStatus())) {
-                user.setActiveToken("activeToken");
+            if (Util.isNotEmpty(user.getActiveStatus())) {
+////                user.setActiveToken("activeToken");
+//                userAccountRepo.save(user);
                 return true;
             }
             return false;
@@ -73,16 +89,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean activeUser(int userId, String token) {
-        boolean result = false;
-        try {
-            UserAccount user = userAccountJpaController.findUserAccount(userId);
-            user.getActiveToken();
-            user.setActiveStatus("status");
-            result = true;
+//        boolean result = false;
+//        try {
+//             UserAccount user = userAccountRepo.findBy(userId);
+//            user.getActiveToken();
+//            user.setActiveStatus("status");
+//            result = true;
+//        } catch (Exception e) {
+//            result = false;
+//        }
+//        return result;
+    
+         try {
+            UserAccount user = userAccountRepo.findBy(userId);
+            if (Util.isNotEmpty(user.getActiveStatus())) {
+//                user.setActiveToken("activeToken");
+                user.setActiveToken(token);
+                userAccountRepo.save(user);
+                return true;
+            }
+            return false;
+
         } catch (Exception e) {
-            result = false;
+            return false;
         }
-        return result;
+    
+    
     }
 
 }
