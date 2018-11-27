@@ -7,9 +7,9 @@ import org.apache.deltaspike.data.api.Repository;
 
 @Transactional
 @Repository
-public abstract class UserAccountJpaRepository extends AbstractEntityRepository<UserAccount, Integer>{
+public abstract class UserAccountRepository extends AbstractEntityRepository<UserAccount, Integer>{
 
-    public abstract UserAccount findByEmail(String email);
+    public abstract UserAccount findOptionalByEmail(String email);
     
     public abstract boolean removeById(int id);
     

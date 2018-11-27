@@ -1,7 +1,7 @@
 package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.model.UserAccount;
-import com.moommim.moommim_web.repository.UserAccountJpaRepository;
+import com.moommim.moommim_web.repository.UserAccountRepository;
 import com.moommim.moommim_web.service.base.UserService;
 import com.moommim.moommim_web.util.Util;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.inject.Inject;
 public class UserServiceImpl implements UserService {
 
     @Inject
-    private UserAccountJpaRepository userAccountRepo;
+    private UserAccountRepository userAccountRepo;
 
     @Override
     public boolean createUser(UserAccount userAccount) {

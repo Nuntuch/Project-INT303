@@ -5,7 +5,7 @@ import com.moommim.moommim_web.config.Key;
 import com.moommim.moommim_web.model.MailMessage;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.repository.MailRepository;
-import com.moommim.moommim_web.repository.UserAccountJpaRepository;
+import com.moommim.moommim_web.repository.UserAccountRepository;
 import com.moommim.moommim_web.service.base.AuthenticationService;
 import com.moommim.moommim_web.service.base.MailService;
 import com.moommim.moommim_web.util.Util;
@@ -20,7 +20,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final static Logger LOGGER = Logger.getLogger(AuthenticationServiceImpl.class.getName());
 
     @Inject
-    private UserAccountJpaRepository userAccountRepo;
+    private UserAccountRepository userAccountRepo;
 
     @Override
     public UserAccount login(String username, String password) {
