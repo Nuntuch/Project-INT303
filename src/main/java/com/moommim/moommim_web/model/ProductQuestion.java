@@ -156,5 +156,5 @@ public class ProductQuestion implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductQuestion[ id=" + id + " ]";
     }
-    
+
 }

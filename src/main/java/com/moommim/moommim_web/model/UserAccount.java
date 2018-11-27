@@ -35,7 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName")
     , @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")
     , @NamedQuery(name = "UserAccount.findByDob", query = "SELECT u FROM UserAccount u WHERE u.dob = :dob")
-    , @NamedQuery(name = "UserAccount.findByAge", query = "SELECT u FROM UserAccount u WHERE u.age = :age")
     , @NamedQuery(name = "UserAccount.findByMobile", query = "SELECT u FROM UserAccount u WHERE u.mobile = :mobile")
     , @NamedQuery(name = "UserAccount.findByGender", query = "SELECT u FROM UserAccount u WHERE u.gender = :gender")
     , @NamedQuery(name = "UserAccount.findByActiveToken", query = "SELECT u FROM UserAccount u WHERE u.activeToken = :activeToken")
@@ -75,8 +74,6 @@ public class UserAccount implements Serializable {
     @Column(name = "DOB")
     @Temporal(TemporalType.DATE)
     private Date dob;
-    @Column(name = "AGE")
-    private Integer age;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -190,14 +187,6 @@ public class UserAccount implements Serializable {
 
     public void setDob(Date dob) {
         this.dob = dob;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getMobile() {
@@ -333,5 +322,5 @@ public class UserAccount implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.UserAccount[ id=" + id + " ]";
     }
-    
+
 }

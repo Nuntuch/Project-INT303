@@ -1,4 +1,3 @@
-
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -8,12 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "ADS")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Ads.findAll", query = "SELECT a FROM Ads a")
+    , @NamedQuery(name = "Ads.findById", query = "SELECT a FROM Ads a WHERE a.id = :id")
+    , @NamedQuery(name = "Ads.findByName", query = "SELECT a FROM Ads a WHERE a.name = :name")
+    , @NamedQuery(name = "Ads.findByImage", query = "SELECT a FROM Ads a WHERE a.image = :image")
+    , @NamedQuery(name = "Ads.findByType", query = "SELECT a FROM Ads a WHERE a.type = :type")
+    , @NamedQuery(name = "Ads.findByPosition", query = "SELECT a FROM Ads a WHERE a.position = :position")
+    , @NamedQuery(name = "Ads.findByGenderTarget", query = "SELECT a FROM Ads a WHERE a.genderTarget = :genderTarget")
+    , @NamedQuery(name = "Ads.findByIsShow", query = "SELECT a FROM Ads a WHERE a.isShow = :isShow")})
 public class Ads implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,9 +39,11 @@ public class Ads implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "NAME")
     private String name;
-    @Size(max = 50)
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "IMAGE")
+    private String image;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -58,9 +72,10 @@ public class Ads implements Serializable {
         this.id = id;
     }
 
-    public Ads(Integer id, String name, String type, String position, String genderTarget, String isShow) {
+    public Ads(Integer id, String name, String image, String type, String position, String genderTarget, String isShow) {
         this.id = id;
         this.name = name;
+        this.image = image;
         this.type = type;
         this.position = position;
         this.genderTarget = genderTarget;
@@ -83,12 +98,12 @@ public class Ads implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImage() {
+        return image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getType() {

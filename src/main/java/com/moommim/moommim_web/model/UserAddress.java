@@ -205,5 +205,5 @@ public class UserAddress implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.UserAddress[ id=" + id + " ]";
     }
-    
+
 }

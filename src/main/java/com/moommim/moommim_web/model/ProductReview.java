@@ -142,5 +142,5 @@ public class ProductReview implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductReview[ id=" + id + " ]";
     }
-    
+
 }

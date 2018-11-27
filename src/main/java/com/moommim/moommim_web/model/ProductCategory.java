@@ -26,7 +26,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ProductCategory.findAll", query = "SELECT p FROM ProductCategory p")
     , @NamedQuery(name = "ProductCategory.findById", query = "SELECT p FROM ProductCategory p WHERE p.id = :id")
-    , @NamedQuery(name = "ProductCategory.findByName", query = "SELECT p FROM ProductCategory p WHERE p.name = :name")})
+    , @NamedQuery(name = "ProductCategory.findByName", query = "SELECT p FROM ProductCategory p WHERE p.name = :name")
+    , @NamedQuery(name = "ProductCategory.findByParentId", query = "SELECT p FROM ProductCategory p WHERE p.parentId = :parentId")})
 public class ProductCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,6 +41,8 @@ public class ProductCategory implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "NAME")
     private String name;
+    @Column(name = "PARENT_ID")
+    private Integer parentId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private List<ProductStock> productStockList;
     @JoinColumn(name = "PROMOTION_ID", referencedColumnName = "ID")
@@ -72,6 +75,14 @@ public class ProductCategory implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     @XmlTransient
@@ -115,5 +126,5 @@ public class ProductCategory implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductCategory[ id=" + id + " ]";
     }
-    
+
 }

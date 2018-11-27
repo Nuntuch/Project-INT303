@@ -157,5 +157,5 @@ public class ProductSale implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductSale[ id=" + id + " ]";
     }
-    
+
 }

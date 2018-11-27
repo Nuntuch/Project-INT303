@@ -145,5 +145,5 @@ public class UserType implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.UserType[ id=" + id + " ]";
     }
-    
+
 }

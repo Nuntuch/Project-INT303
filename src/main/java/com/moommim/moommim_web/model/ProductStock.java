@@ -295,5 +295,5 @@ public class ProductStock implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductStock[ id=" + id + " ]";
     }
-    
+
 }

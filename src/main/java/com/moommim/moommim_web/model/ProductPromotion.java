@@ -224,5 +224,5 @@ public class ProductPromotion implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductPromotion[ id=" + id + " ]";
     }
-    
+
 }

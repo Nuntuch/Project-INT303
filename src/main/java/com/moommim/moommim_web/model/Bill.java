@@ -215,5 +215,5 @@ public class Bill implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.Bill[ id=" + id + " ]";
     }
-    
+
 }
