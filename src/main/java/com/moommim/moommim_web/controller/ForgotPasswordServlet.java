@@ -32,7 +32,7 @@ public class ForgotPasswordServlet extends BaseController {
             if (!authenticationService.forgotPassword(email)) {
                 request.setAttribute("status", "invalid email");
             } else {
-                sendToPage(ServletPath.LOGIN_SERVLET, request, response);
+                sendRedirectToPage(ServletPath.LOGIN_SERVLET, response);
                 return;
             }
         }
