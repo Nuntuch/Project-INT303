@@ -29,12 +29,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductStock> getAllProductByCategoryId(int categoryId) {
-        return productStockRepository.findByCategoryId_id(categoryId);
+        return productStockRepository.findOptionalByCategoryId_id(categoryId);
     }
-
+    
     @Override
     public List<ProductStock> getAllProductByCategoryId(int categoryId, String isShow) {
-        return productStockRepository.findByCategoryId_idAndIsShow(categoryId, isShow);
+        return productStockRepository.findOptionalByCategoryId_idAndIsShow(categoryId, isShow);
     }
 
     @Override

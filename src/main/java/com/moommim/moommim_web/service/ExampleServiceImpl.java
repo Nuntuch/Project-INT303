@@ -14,7 +14,7 @@ public class ExampleServiceImpl implements ExampleService {
 
     @Override
     public Ads getAdsById(int id) {
-        return adsRepo.findById(id);
+        return adsRepo.findOptionalById(id);
     }
 
     @Override
@@ -24,12 +24,12 @@ public class ExampleServiceImpl implements ExampleService {
 
     @Override
     public List<Ads> getAllAdsByPosition(String position) {
-        return adsRepo.findByPosition(position);
+        return adsRepo.findOptionalByPosition(position);
     }
 
     @Override
     public List<Ads> getAllAdsByType(String type) {
-        return adsRepo.findByType(type);
+        return adsRepo.findOptionalByType(type);
     }
 
     @Override
