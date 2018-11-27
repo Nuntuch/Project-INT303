@@ -2,9 +2,12 @@ package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.config.App;
 import com.moommim.moommim_web.config.Key;
+import com.moommim.moommim_web.model.MailMessage;
 import com.moommim.moommim_web.model.UserAccount;
+import com.moommim.moommim_web.repository.MailRepository;
 import com.moommim.moommim_web.repository.UserAccountJpaRepository;
 import com.moommim.moommim_web.service.base.AuthenticationService;
+import com.moommim.moommim_web.service.base.MailService;
 import com.moommim.moommim_web.util.Util;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,12 +63,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return false;
     }
 
+    @Inject
+    private MailService mailService;
+
     @Override
     public boolean forgotPassword(String username) {
         if (Util.isNotEmpty(username)) {
             UserAccount userAccountObj = userAccountRepo.findByEmail(username);
             if (Util.isNotEmpty(userAccountObj)) {
                 try {
+                    mailService.sendMail(username, new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1>"));
                     return true;
                 } catch (Exception e) {
                     return false;
