@@ -72,7 +72,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             UserAccount userAccountObj = userAccountRepo.findByEmail(username);
             if (Util.isNotEmpty(userAccountObj)) {
                 try {
-                    mailService.sendMail(username, new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1>"));
+                    mailService.sendMail(username, new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1><br><a href='http://localhost:8080/Project-INT303/forgot?token=' "+forgotToken));
                     return true;
                 } catch (Exception e) {
                     return false;
