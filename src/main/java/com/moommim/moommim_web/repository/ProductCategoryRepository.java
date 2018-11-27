@@ -9,9 +9,9 @@ import org.apache.deltaspike.data.api.Repository;
 @Repository
 public abstract class ProductCategoryRepository extends AbstractEntityRepository<ProductCategory, Integer> {
     
-    public abstract ProductCategory findById(int id);
+    public abstract ProductCategory findOptionalById(int id);
 
-    public abstract ProductCategory findByName(String name);
+    public abstract ProductCategory findOptionalByName(String name);
     
     public abstract int removeById(int id);
 

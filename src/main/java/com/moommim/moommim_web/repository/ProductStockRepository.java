@@ -11,15 +11,15 @@ import org.apache.deltaspike.data.api.Repository;
 @Repository
 public abstract class ProductStockRepository extends AbstractEntityRepository<ProductStock, Integer> {
 
-    public abstract ProductStock findById(int id);
+    public abstract ProductStock findOptionalById(int id);
 
-    public abstract ProductStock findByName(String name);
+    public abstract ProductStock findOptionalByName(String name);
 
-    public abstract ProductStock findByNameLike(String name);
+    public abstract ProductStock findOptionalByNameLike(String name);
 
-    public abstract List<ProductStock> findByCategoryId_id(int categoryId);
+    public abstract List<ProductStock> findOptionalByCategoryId_id(int categoryId);
     
-    public abstract List<ProductStock> findByCategoryId_idAndIsShow(int categoryId, String isShow);
+    public abstract List<ProductStock> findOptionalByCategoryId_idAndIsShow(int categoryId, String isShow);
 
     public abstract int removeById(int id);
 

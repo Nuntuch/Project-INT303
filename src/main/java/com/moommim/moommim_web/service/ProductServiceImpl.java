@@ -3,7 +3,6 @@ package com.moommim.moommim_web.service;
 import com.moommim.moommim_web.model.ProductStock;
 import com.moommim.moommim_web.repository.ProductStockRepository;
 import com.moommim.moommim_web.service.base.ProductService;
-import com.moommim.moommim_web.util.Util;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -15,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductStock getProductById(int id) {
-        return null;
+        return productStockRepository.findOptionalById(id);
     }
 
     @Override
