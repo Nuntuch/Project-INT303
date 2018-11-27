@@ -15,9 +15,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean createUser(UserAccount userAccount) {
 
-        UserAccount userAccountObj = userAccountRepo.save(userAccount);
-
-        return Util.isNotEmpty(userAccountObj);
+        return Util.isNotEmpty(userAccountRepo.save(userAccount));
 
     }
 
