@@ -21,14 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean editUser(UserAccount editAccount) {
-        boolean result = false;
-        try {
-            userAccountJpaController.edit(editAccount);
-            result = true;
-        } catch (Exception e) {
-            result = false;
-        }
-        return result;
+
+    return  Util.isNotEmpty(userAccountRepo.save(editAccount));
+
     }
 
     @Override
