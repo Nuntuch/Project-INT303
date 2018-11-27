@@ -3,10 +3,12 @@ package com.moommim.moommim_web.service;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.service.base.UserService;
 import java.util.List;
+import javax.inject.Inject;
 
 public class UserServiceImpl implements UserService{
 
-
+@Inject
+private UserAccount
 
     @Override
     public boolean createUser(UserAccount userAccount) {
