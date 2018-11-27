@@ -17,11 +17,7 @@ public class UserServiceImpl implements UserService {
 
         UserAccount userAccountObj = userAccountRepo.save(userAccount);
 
-        if (Util.isNotEmpty(userAccountObj)) {
-            return true;
-
-        }
-        return false;
+        return Util.isNotEmpty(userAccountObj);
 
     }
 
