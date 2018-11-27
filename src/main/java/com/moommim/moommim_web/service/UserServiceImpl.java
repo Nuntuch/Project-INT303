@@ -1,5 +1,6 @@
 package com.moommim.moommim_web.service;
 
+import com.moommim.moommim_web.config.UserActivateConstant;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.repository.UserAccountRepository;
 import com.moommim.moommim_web.service.base.UserService;
@@ -54,29 +55,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isActivate(int userId) {
-
-        
-//        เช็คก่อนว่าเราหา user จาก id นี้เจอ
-//                ถ้าเจอ ให้เช็คว่า active ยัง
-//                        ไมเจอ return false
-//                        เจอ เข็คว่า Active ยัง
-//                              เจอ return true
-//                              ไม่เจอ false
-//                        
-//                        
-//                        
-//                        
-        
-        
-        
-        
-        System.out.println("Test");
-        
+ 
         try {
-            UserAccount user = userAccountRepo.findBy(userId);
-            if (Util.isNotEmpty(user.getActiveStatus())) {
-////                user.setActiveToken("activeToken");
-//                userAccountRepo.save(user);
+            UserAccount user = getUserById(userId);
+            if (Util.isNotEmpty(user.getActiveStatus()) && user.getActiveStatus().equals(UserActivateConstant.ACTIVATED)) {
+                
                 return true;
             }
             return false;
