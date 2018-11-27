@@ -22,48 +22,53 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean editUser(UserAccount editAccount) {
 
-    return  Util.isNotEmpty(userAccountRepo.save(editAccount));
+        return Util.isNotEmpty(userAccountRepo.save(editAccount));
 
     }
 
     @Override
     public boolean deleteUserById(int userId) {
-        boolean result = false;
-        try {
-            userAccountJpaController.destroy(userId);
-            result = true;
-        } catch (Exception e) {
-            result = false;
-        }
-        return result;
+
+//        UserAccount userAccountObj = userAccountRepo.findBy(userId);
+//        try {
+//            userAccountRepo.remove(userAccountObj);
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+        return userAccountRepo.removeById(userId);
     }
 
     @Override
     public UserAccount getUserById(int userId) {
-        UserAccount user = userAccountJpaController.findUserAccount(userId);
-        return user;
+
+        return userAccountRepo.findBy(userId);
     }
 
     @Override
     public List<UserAccount> getAllUser() {
-        List<UserAccount> allUser = userAccountJpaController.findUserAccountEntities();
-        return allUser;
+
+        return userAccountRepo.findAll();
+
     }
 
     @Override
     public boolean isActivate(int userId) {
-        boolean result = false;
+//        boolean result = false;
         try {
-            UserAccount user = userAccountJpaController.findUserAccount(userId);
-            if (user.getActiveStatus() != null) {
+//            UserAccount user = userAccountJpaController.findUserAccount(userId);
+            UserAccount user = userAccountRepo.findBy(userId);
+//            if (user.getActiveStatus() != null) {
+            if (Util.isNotEmpty(userAccountRepo.findBy(userId).getActiveStatus())) {
                 user.setActiveToken("activeToken");
-                result = true;
+                return true;
             }
+            return false;
 
         } catch (Exception e) {
-            result = false;
+            return false;
         }
-        return result;
+
     }
 
     @Override
