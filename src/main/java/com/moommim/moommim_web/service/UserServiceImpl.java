@@ -28,6 +28,8 @@ public class UserServiceImpl implements UserService {
             try {
                 String CreateAccountToken = new SCryptPasswordEncoder().encode(userAccount.getEmail() + Instant.now());
                 mailService.sendMail(userAccount.getEmail(), new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1><br><a href='http://localhost:8080/Project-INT303/user?token=' " + CreateAccountToken));
+                userAccount.setActiveToken(CreateAccountToken);
+                userAccountRepo.save(userAccount);
                 return true;
             } catch (Exception e) {
                 return false;
