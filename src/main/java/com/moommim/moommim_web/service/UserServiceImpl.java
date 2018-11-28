@@ -1,22 +1,44 @@
 package com.moommim.moommim_web.service;
 
 import com.moommim.moommim_web.config.UserActivateConstant;
+import com.moommim.moommim_web.model.MailMessage;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.repository.UserAccountRepository;
+import com.moommim.moommim_web.service.base.MailService;
 import com.moommim.moommim_web.service.base.UserService;
 import com.moommim.moommim_web.util.Util;
+import java.time.Instant;
 import java.util.List;
 import javax.inject.Inject;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 public class UserServiceImpl implements UserService {
 
     @Inject
     private UserAccountRepository userAccountRepo;
 
+    @Inject
+    private MailService mailService;
+    
     @Override
     public boolean createUser(UserAccount userAccount) {
-
-        return Util.isNotEmpty(userAccountRepo.save(userAccount));
+        
+        if(Util.isNotEmpty(userAccountRepo.save(userAccount))){
+        
+              try {
+                    String CreateAccountToken = new SCryptPasswordEncoder().encode(userAccount.getEmail() + Instant.now());
+                    mailService.sendMail(userAccount.getEmail(), new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1><br><a href='http://localhost:8080/Project-INT303/user?token=' " + CreateAccountToken));
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+        
+        
+        
+        }
+        return false;
+        
+//        return Util.isNotEmpty(userAccountRepo.save(userAccount));
 
     }
 
