@@ -1,16 +1,17 @@
 package com.moommim.moommim_web.config;
 
 public class UserLevelConstant {
+    
+    public static final int ADMIN = 1;
         
-    public static final String NORMAL = "user_normal";
+    public static final int NORMAL = 2;
     
-    public static final String BRONZE = "user_bronze";
+    public static final int BRONZE = 3;
     
-    public static final String SILVER = "user_silver";
+    public static final int SILVER = 4;
     
-    public static final String GOLD = "user_gold";
+    public static final int GOLD = 5;
   
-    public static final String ADMIN = "user_admin";
         
   
 
