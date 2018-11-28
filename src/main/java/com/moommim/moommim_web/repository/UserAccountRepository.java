@@ -13,4 +13,6 @@ public abstract class UserAccountRepository extends AbstractEntityRepository<Use
     
     public abstract boolean removeById(int id);
     
+    public abstract UserAccount findByActiveToken(String token);
+    
 }
