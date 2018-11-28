@@ -63,7 +63,7 @@
                                 <i class="shopping cart icon"></i>
                             </div>
                             <a class="ui basic primary left pointing label">
-                                2
+                                ${not empty sessionScope.cart ? sessionScope.cart.totalQuantity : 0}
                             </a>
                         </div> 
                     </div>
