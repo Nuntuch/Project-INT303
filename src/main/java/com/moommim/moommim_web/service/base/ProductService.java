@@ -3,7 +3,7 @@ package com.moommim.moommim_web.service.base;
 import com.moommim.moommim_web.model.ProductStock;
 import java.util.List;
 
-public interface ProductService extends BaseService {
+public interface ProductService {
 
     ProductStock getProductById(int id);
 
