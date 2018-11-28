@@ -7,15 +7,7 @@
     titlePage="${title}"
     descriptionPage="Sale more than gadget"
     keywordPage="computer, notebook, smartphone, tablet">
-    <jsp:attribute name="header">
-
-    </jsp:attribute>
-    <jsp:attribute name="footer">
-
-    </jsp:attribute>
     <jsp:body>
-
-
         <div class="ui basic segment">
             <div class="ui breadcrumb">
                 <a class="section" href="${request.contextPath}">หน้าแรก</a>
@@ -25,12 +17,12 @@
         </div>
 
         <div class="ui three top attached steps">
-            <a class="active step" href="cart">
+            <div class="active step">
                 <i class="shopping cart icon"></i>
                 <div class="content">
                     <div class="title">ตระกร้าสินค้า</div>
                 </div>
-            </a>
+            </div>
             <a class="step ${empty status ? '' : 'disabled'}" href="checkout">
                 <i class="payment icon"></i>
                 <div class="content">
@@ -55,24 +47,76 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div class="ui four stackable cards">
-                        <c:forEach items="${sessionScope.cart.cartItemList}" var="item">
-                            <a class="ui card link" href="product?id=${item.product.id}">
-                                <div class="image">
-                                    <img src="https://via.placeholder.com/300" />
-                                </div>
-                                <div class="content">
-                                    <div class="header">${item.product.name} | ${item.quantity} | ${item.totalPrice}</div>
-                                    <div class="description">
-                                        <h3 class="ui header orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.product.price}"/></h3>
-                                    </div> 
-                                </div>
+                    <table class="ui unstackable table center aligned">
+                        <thead>
+                            <tr>
+                                <th class="collapsing"></th>
+                                <th class="collapsing">#</th>
+                                <th>รายการ</th>
+                                <th>ราคา</th>
+                                <th>จำนวน</th>
+                                <th>รวม</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${sessionScope.cart.cartItemList}" var="item" varStatus="itemNo">
+                                <tr>
+                                    <td>
+                                        <a href="cart?action=clear&id=${item.product.id}&redirect=false" class="ui mini icon button">
+                                            <i class="times circle icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>${itemNo.count}</td>
+                                    <td class="left aligned">${item.product.name}</td>
+                                    <td><fmt:formatNumber currencySymbol="฿" type="currency" value="${item.product.price}" /></td>
+                                    <td>
+                                        <a href="cart?action=remove&id=${item.product.id}&redirect=false" class="ui mini icon button">
+                                            <i class="minus icon"></i>
+                                        </a>
+                                        ${item.quantity}
+                                        <a href="cart?action=add&id=${item.product.id}&redirect=false" class="ui mini icon button">
+                                            <i class="plus icon"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <fmt:formatNumber currencySymbol="฿" type="currency" value="${item.totalPrice}" />
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4">รวมทั้งหมด</th>
+                                <th>${sessionScope.cart.totalQuantity}</th>
+                                <th>
+                                    <h4>
+                                        <fmt:formatNumber currencySymbol="฿" type="currency" value="${sessionScope.cart.totalPrice}" />
+                                    </h4>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="ui equal width grid">
+                        <div class="column">
+                            <a href="cart?action=clear-all" class="ui red large right aligned button">
+                                <i class="times circle icon"></i>
+                                ล้างตระกร้า
                             </a>
-                        </c:forEach>
+                        </div>
+                        <div class="column">
+                            <a href="checkout" class="ui orange large right floated button">
+                                <i class="credit card icon"></i>
+                                ชำระเงิน
+                            </a>
+                        </div>
                     </div>
+
                 </div>
-            </c:otherwise>
-        </c:choose>
-    </div>
+            </div>
+        </div>
+    </c:otherwise>
+</c:choose>
+</div>
 </jsp:body>
 </t:master-layout>

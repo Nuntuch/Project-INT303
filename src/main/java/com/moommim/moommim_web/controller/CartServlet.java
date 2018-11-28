@@ -29,7 +29,9 @@ public class CartServlet extends BaseController {
             throws ServletException, IOException {
         String actionParam = request.getParameter("action");
         String productIdParam = request.getParameter("id");
+        String redirectParam = request.getParameter("redirect");
         HttpSession session = request.getSession(true);
+        boolean isRedirect = true;
         CartRepository cart = (CartRepository) session.getAttribute(Key.CART_KEY);
         if (Util.isEmpty(cart)) {
             cart = new CartRepository();
@@ -39,15 +41,25 @@ public class CartServlet extends BaseController {
             request.setAttribute("status", "ไม่มีสินค้าในตระกร้า");
         }
         if (Util.isNotEmpty(actionParam)) {
+            if (Util.isNotEmpty(redirectParam)) {
+                isRedirect = Boolean.getBoolean(redirectParam);
+            }
             if (Util.isNotEmpty(productIdParam)) {
                 int productId = Integer.parseInt(productIdParam);
                 updateCart(actionParam, productId, cart);
-                sendRedirectToPage(ServletPath.PRODUCT_SERVLET + "?id=" + productId, response);
-                return;
+                if (isRedirect) {
+                    sendRedirectToPage(ServletPath.PRODUCT_SERVLET + "?id=" + productId, response);
+                    return;
+                } else {
+                    sendRedirectToPage(ServletPath.CART_SERVLET, response);
+                    return;
+                }
             } else {
                 updateCart(actionParam, 0, cart);
-                sendRedirectToPage(ServletPath.CART_SERVLET, response);
-                return;
+                if (isRedirect) {
+                    sendRedirectToPage(ServletPath.CART_SERVLET, response);
+                    return;
+                }
             }
         }
         sendToPage(ViewPath.SHOW_CART_VIEW, request, response);
