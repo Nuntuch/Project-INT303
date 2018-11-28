@@ -47,6 +47,9 @@
 
                 <div class="ui basic segment">
                     ${productById.name} |  ${productById.price}
+                    <br>
+                    <a href="cart?action=add&id=${productById.id}">Add to Cart</a> <br/>
+                    <a href="cart?action=remove&id=${productById.id}">Remove from Cart</a>
                 </div>
             </c:otherwise>
         </c:choose>
