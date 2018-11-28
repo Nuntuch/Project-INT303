@@ -21,5 +21,7 @@ public class ViewPath {
     public static final String CREATE_USER_VIEW = BASE_PAGE + BASE_USER_PAGE + "/create_user.jsp";
     
     public static final String EDIT_USER_VIEW = BASE_PAGE + BASE_USER_PAGE + "/edit_user.jsp";
+   
+    public static final String ACTION_USER_VIEW = BASE_PAGE + BASE_USER_PAGE + "/action_user.jsp";
 
 }
