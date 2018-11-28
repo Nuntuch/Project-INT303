@@ -14,7 +14,7 @@
 
     </jsp:attribute>
     <jsp:body>
-        
+
         <c:choose>
             <c:when test="${not empty status}">
                 <div class="ui placeholder segment">
@@ -29,26 +29,20 @@
                     <div class="ui breadcrumb">
                         <a class="section" href="${request.contextPath}">หน้าแรก</a>
                         <i class="right angle icon divider"></i>
-                        <div class="active section">${categoryName}</div>
+                        <div class="active section">ตระกร้าสินค้า</div>
                     </div>
                 </div>
-
-                <h2 class="ui center aligned segment header">
-                    <div class="content ">
-                        ${categoryName}
-                    </div>
-                </h2>
-
+                       ทั้งหมด ${sessionScope.cart.totalQuantity} | ราคารวม ${sessionScope.cart.totalPrice}
                 <div class="ui four stackable cards">
-                    <c:forEach items="${productStockListByCategory}" var="item">
-                        <a class="ui card link" href="product?id=${item.id}">
+                    <c:forEach items="${sessionScope.cart.cartItemList}" var="item">
+                        <a class="ui card link" href="product?id=${item.product.id}">
                             <div class="image">
                                 <img src="https://via.placeholder.com/300" />
                             </div>
                             <div class="content">
-                                <div class="header">${item.name}</div>
+                                <div class="header">${item.product.name} | ${item.quantity} | ${item.totalPrice}</div>
                                 <div class="description">
-                                    <h3 class="ui header orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.price}"/></h3>
+                                    <h3 class="ui header orange"><fmt:formatNumber  type="currency" currencySymbol="฿" value="${item.product.price}"/></h3>
                                 </div> 
                             </div>
                         </a>
@@ -56,6 +50,6 @@
                 </div>
             </c:otherwise>
         </c:choose>
-        
+
     </jsp:body>
 </t:master-layout>

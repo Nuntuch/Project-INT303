@@ -2,6 +2,7 @@ package com.moommim.moommim_web.repository;
 
 import com.moommim.moommim_web.model.CartItem;
 import com.moommim.moommim_web.model.ProductStock;
+import com.moommim.moommim_web.util.Util;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +18,7 @@ public class CartRepository {
         cart = new HashMap();
     }
 
-    public List<CartItem> getProductList() {
+    public List<CartItem> getCartItemList() {
         return new ArrayList(cart.values());
     }
 
@@ -41,7 +42,7 @@ public class CartRepository {
 
     public void addProduct(ProductStock product) {
         CartItem cartItem = cart.get(product.getId());
-        if (cartItem == null) {
+        if (Util.isEmpty(cartItem)) {
             cart.put(product.getId(), new CartItem(product));
         } else {
             cartItem.setQuantity(cartItem.getQuantity() + 1);
@@ -49,7 +50,23 @@ public class CartRepository {
     }
 
     public void removeProduct(int productId) {
+        CartItem cartItem = cart.get(productId);
+        if (Util.isNotEmpty(cartItem)) {
+            if (cartItem.getQuantity() >= 1) {
+                cartItem.setQuantity(cartItem.getQuantity() - 1);
+            }
+            if(cartItem.getQuantity() == 0) {
+                clearProduct(productId);
+            }
+        }
+    }
+
+    public void clearProduct(int productId) {
         cart.remove(productId);
+    }
+
+    public void clearAll() {
+        cart.clear();
     }
 
 }
