@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -10,9 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,12 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")
     , @NamedQuery(name = "UserAccount.findByDob", query = "SELECT u FROM UserAccount u WHERE u.dob = :dob")
     , @NamedQuery(name = "UserAccount.findByMobile", query = "SELECT u FROM UserAccount u WHERE u.mobile = :mobile")
-    , @NamedQuery(name = "UserAccount.findByGender", query = "SELECT u FROM UserAccount u WHERE u.gender = :gender")
-    , @NamedQuery(name = "UserAccount.findByActiveToken", query = "SELECT u FROM UserAccount u WHERE u.activeToken = :activeToken")
-    , @NamedQuery(name = "UserAccount.findByActiveStatus", query = "SELECT u FROM UserAccount u WHERE u.activeStatus = :activeStatus")
-    , @NamedQuery(name = "UserAccount.findByForgotPasswordToken", query = "SELECT u FROM UserAccount u WHERE u.forgotPasswordToken = :forgotPasswordToken")
-    , @NamedQuery(name = "UserAccount.findByTotalPoint", query = "SELECT u FROM UserAccount u WHERE u.totalPoint = :totalPoint")
-    , @NamedQuery(name = "UserAccount.findByIsSubscribe", query = "SELECT u FROM UserAccount u WHERE u.isSubscribe = :isSubscribe")})
+    , @NamedQuery(name = "UserAccount.findByGender", query = "SELECT u FROM UserAccount u WHERE u.gender = :gender")})
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -84,41 +78,12 @@ public class UserAccount implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "GENDER")
     private String gender;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "ACTIVE_TOKEN")
-    private String activeToken;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "ACTIVE_STATUS")
-    private String activeStatus;
-    @Size(max = 60)
-    @Column(name = "FORGOT_PASSWORD_TOKEN")
-    private String forgotPasswordToken;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "TOTAL_POINT")
-    private int totalPoint;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "IS_SUBSCRIBE")
-    private String isSubscribe;
     @ManyToMany(mappedBy = "userAccountList")
     private List<ProductStock> productStockList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private List<ProductReview> productReviewList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Bill> billList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<UserAddress> userAddressList;
-    @JoinColumn(name = "TYPE", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private UserType type;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private List<ProductQuestion> productQuestionList;
 
     public UserAccount() {
     }
@@ -127,7 +92,7 @@ public class UserAccount implements Serializable {
         this.id = id;
     }
 
-    public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile, String gender, String activeToken, String activeStatus, int totalPoint, String isSubscribe) {
+    public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile, String gender) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -135,10 +100,6 @@ public class UserAccount implements Serializable {
         this.lastName = lastName;
         this.mobile = mobile;
         this.gender = gender;
-        this.activeToken = activeToken;
-        this.activeStatus = activeStatus;
-        this.totalPoint = totalPoint;
-        this.isSubscribe = isSubscribe;
     }
 
     public Integer getId() {
@@ -205,46 +166,6 @@ public class UserAccount implements Serializable {
         this.gender = gender;
     }
 
-    public String getActiveToken() {
-        return activeToken;
-    }
-
-    public void setActiveToken(String activeToken) {
-        this.activeToken = activeToken;
-    }
-
-    public String getActiveStatus() {
-        return activeStatus;
-    }
-
-    public void setActiveStatus(String activeStatus) {
-        this.activeStatus = activeStatus;
-    }
-
-    public String getForgotPasswordToken() {
-        return forgotPasswordToken;
-    }
-
-    public void setForgotPasswordToken(String forgotPasswordToken) {
-        this.forgotPasswordToken = forgotPasswordToken;
-    }
-
-    public int getTotalPoint() {
-        return totalPoint;
-    }
-
-    public void setTotalPoint(int totalPoint) {
-        this.totalPoint = totalPoint;
-    }
-
-    public String getIsSubscribe() {
-        return isSubscribe;
-    }
-
-    public void setIsSubscribe(String isSubscribe) {
-        this.isSubscribe = isSubscribe;
-    }
-
     @XmlTransient
     public List<ProductStock> getProductStockList() {
         return productStockList;
@@ -252,15 +173,6 @@ public class UserAccount implements Serializable {
 
     public void setProductStockList(List<ProductStock> productStockList) {
         this.productStockList = productStockList;
-    }
-
-    @XmlTransient
-    public List<ProductReview> getProductReviewList() {
-        return productReviewList;
-    }
-
-    public void setProductReviewList(List<ProductReview> productReviewList) {
-        this.productReviewList = productReviewList;
     }
 
     @XmlTransient
@@ -279,23 +191,6 @@ public class UserAccount implements Serializable {
 
     public void setUserAddressList(List<UserAddress> userAddressList) {
         this.userAddressList = userAddressList;
-    }
-
-    public UserType getType() {
-        return type;
-    }
-
-    public void setType(UserType type) {
-        this.type = type;
-    }
-
-    @XmlTransient
-    public List<ProductQuestion> getProductQuestionList() {
-        return productQuestionList;
-    }
-
-    public void setProductQuestionList(List<ProductQuestion> productQuestionList) {
-        this.productQuestionList = productQuestionList;
     }
 
     @Override

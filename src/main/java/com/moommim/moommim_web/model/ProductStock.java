@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -96,20 +97,13 @@ public class ProductStock implements Serializable {
         @JoinColumn(name = "USER_ID", referencedColumnName = "ID")})
     @ManyToMany
     private List<UserAccount> userAccountList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private List<ProductReview> productReviewList;
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private ProductCategory categoryId;
-    @JoinColumn(name = "PROMOTION_ID", referencedColumnName = "ID")
-    @ManyToOne
-    private ProductPromotion promotionId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<ProductImage> productImageList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<ProductSale> productSaleList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private List<ProductQuestion> productQuestionList;
 
     public ProductStock() {
     }
@@ -219,29 +213,12 @@ public class ProductStock implements Serializable {
         this.userAccountList = userAccountList;
     }
 
-    @XmlTransient
-    public List<ProductReview> getProductReviewList() {
-        return productReviewList;
-    }
-
-    public void setProductReviewList(List<ProductReview> productReviewList) {
-        this.productReviewList = productReviewList;
-    }
-
     public ProductCategory getCategoryId() {
         return categoryId;
     }
 
     public void setCategoryId(ProductCategory categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public ProductPromotion getPromotionId() {
-        return promotionId;
-    }
-
-    public void setPromotionId(ProductPromotion promotionId) {
-        this.promotionId = promotionId;
     }
 
     @XmlTransient
@@ -260,15 +237,6 @@ public class ProductStock implements Serializable {
 
     public void setProductSaleList(List<ProductSale> productSaleList) {
         this.productSaleList = productSaleList;
-    }
-
-    @XmlTransient
-    public List<ProductQuestion> getProductQuestionList() {
-        return productQuestionList;
-    }
-
-    public void setProductQuestionList(List<ProductQuestion> productQuestionList) {
-        this.productQuestionList = productQuestionList;
     }
 
     @Override

@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -9,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -45,9 +44,6 @@ public class ProductCategory implements Serializable {
     private Integer parentId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private List<ProductStock> productStockList;
-    @JoinColumn(name = "PROMOTION_ID", referencedColumnName = "ID")
-    @ManyToOne
-    private ProductPromotion promotionId;
 
     public ProductCategory() {
     }
@@ -92,14 +88,6 @@ public class ProductCategory implements Serializable {
 
     public void setProductStockList(List<ProductStock> productStockList) {
         this.productStockList = productStockList;
-    }
-
-    public ProductPromotion getPromotionId() {
-        return promotionId;
-    }
-
-    public void setPromotionId(ProductPromotion promotionId) {
-        this.promotionId = promotionId;
     }
 
     @Override
