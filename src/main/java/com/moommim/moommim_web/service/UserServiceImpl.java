@@ -19,26 +19,22 @@ public class UserServiceImpl implements UserService {
 
     @Inject
     private MailService mailService;
-    
+
     @Override
     public boolean createUser(UserAccount userAccount) {
-        
-        if(Util.isNotEmpty(userAccountRepo.save(userAccount))){
-        
-              try {
-                    String CreateAccountToken = new SCryptPasswordEncoder().encode(userAccount.getEmail() + Instant.now());
-                    mailService.sendMail(userAccount.getEmail(), new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1><br><a href='http://localhost:8080/Project-INT303/user?token=' " + CreateAccountToken));
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
-        
-        
-        
+
+        if (Util.isNotEmpty(userAccountRepo.save(userAccount))) {
+
+            try {
+                String CreateAccountToken = new SCryptPasswordEncoder().encode(userAccount.getEmail() + Instant.now());
+                mailService.sendMail(userAccount.getEmail(), new MailMessage("Hello Form Moommim :D", "<h1>Send Mail Noti</h1><br><a href='http://localhost:8080/Project-INT303/user?token=' " + CreateAccountToken));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+
         }
         return false;
-        
-//        return Util.isNotEmpty(userAccountRepo.save(userAccount));
 
     }
 
@@ -99,11 +95,11 @@ public class UserServiceImpl implements UserService {
             UserAccount user = getUserById(userId);
             if (Util.isNotEmpty(user) && userAccountRepo.findByActiveToken(token).getId().equals(userId)) {
 
-                    user.setActiveStatus(UserActivateConstant.ACTIVATED);
-                    userAccountRepo.save(user);
+                user.setActiveStatus(UserActivateConstant.ACTIVATED);
+                userAccountRepo.save(user);
 
-                    return true;
-                
+                return true;
+
             }
             return false;
 
