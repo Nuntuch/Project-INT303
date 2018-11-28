@@ -31,7 +31,22 @@ public class CartServlet extends BaseController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String actionParam = request.getParameter("action");
-        if (Util.isEmpty(actionParam)) {
+        String productIdParam = request.getParameter("id");
+        if (Util.isNotEmpty(actionParam)) {
+            if (Util.isNotEmpty(productIdParam)) {
+                switch (actionParam) {
+                    case "add":
+                        System.out.println("Add : " + productIdParam);
+                        break;
+                    case "remove":
+                        System.out.println("Remove : " + productIdParam);
+                        break;
+                }
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;
+            }
+        } else {
             request.setAttribute("status", "ไม่มีสินค้าในตระกร้า");
         }
         sendToPage(ViewPath.SHOW_CART_VIEW, request, response);
