@@ -10,6 +10,8 @@ public class ServletPath {
 
     public static final String PRODUCT_SERVLET = "product";
 
+    public static final String CART_SERVLET = "cart";
+
     public static final String ADMIN_UPLOAD_SERVLET = "admin-upload";
 
     public static final String ADMIN_MANAGE_PRODUCT_SERVLET = "admin-product";

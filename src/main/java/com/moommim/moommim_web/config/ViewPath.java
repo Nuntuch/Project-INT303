@@ -8,11 +8,15 @@ public class ViewPath {
 
     public static final String BASE_PRODUCT_PAGE = "/product";
 
+    public static final String BASE_CART_PAGE = "/cart";
+
     public static final String INDEX_VIEW = BASE_PAGE + BASE_HOME_PAGE + "/index.jsp";
 
     public static final String PRODUCT_BY_CATEGORY_VIEW = BASE_PAGE + BASE_PRODUCT_PAGE + "/show_by_category.jsp";
 
     public static final String PRODUCT_BY_ID_VIEW = BASE_PAGE + BASE_PRODUCT_PAGE + "/show_by_product_id.jsp";
+
+    public static final String SHOW_CART_VIEW = BASE_PAGE + BASE_CART_PAGE + "/show_cart.jsp";
 
     public static final String ADD_PRODUCT_VIEW = BASE_PAGE + BASE_PRODUCT_PAGE + "/add_product.jsp";
 
