@@ -86,6 +86,14 @@ public class UserAccount implements Serializable {
         this.mobile = mobile;
     }
 
+    public UserAccount(String email, String password, String firstName, String lastName, String mobile) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobile = mobile;
+    }
+
     public Integer getId() {
         return id;
     }
