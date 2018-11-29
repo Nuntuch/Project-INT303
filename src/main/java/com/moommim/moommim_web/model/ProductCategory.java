@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -9,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,7 +25,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "ProductCategory.findAll", query = "SELECT p FROM ProductCategory p")
     , @NamedQuery(name = "ProductCategory.findById", query = "SELECT p FROM ProductCategory p WHERE p.id = :id")
-    , @NamedQuery(name = "ProductCategory.findByName", query = "SELECT p FROM ProductCategory p WHERE p.name = :name")})
+    , @NamedQuery(name = "ProductCategory.findByName", query = "SELECT p FROM ProductCategory p WHERE p.name = :name")
+    , @NamedQuery(name = "ProductCategory.findByParentId", query = "SELECT p FROM ProductCategory p WHERE p.parentId = :parentId")})
 public class ProductCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,11 +40,10 @@ public class ProductCategory implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "NAME")
     private String name;
+    @Column(name = "PARENT_ID")
+    private Integer parentId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private List<ProductStock> productStockList;
-    @JoinColumn(name = "PROMOTION_ID", referencedColumnName = "ID")
-    @ManyToOne
-    private ProductPromotion promotionId;
 
     public ProductCategory() {
     }
@@ -74,6 +73,14 @@ public class ProductCategory implements Serializable {
         this.name = name;
     }
 
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
     @XmlTransient
     public List<ProductStock> getProductStockList() {
         return productStockList;
@@ -81,14 +88,6 @@ public class ProductCategory implements Serializable {
 
     public void setProductStockList(List<ProductStock> productStockList) {
         this.productStockList = productStockList;
-    }
-
-    public ProductPromotion getPromotionId() {
-        return promotionId;
-    }
-
-    public void setPromotionId(ProductPromotion promotionId) {
-        this.promotionId = promotionId;
     }
 
     @Override
@@ -115,5 +114,5 @@ public class ProductCategory implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductCategory[ id=" + id + " ]";
     }
-    
+
 }
