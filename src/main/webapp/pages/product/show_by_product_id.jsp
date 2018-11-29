@@ -6,13 +6,8 @@
 <t:master-layout 
     titlePage="${title}"
     descriptionPage="Sale more than gadget"
-    keywordPage="computer, notebook, smartphone, tablet">
-    <jsp:attribute name="header">
-
-    </jsp:attribute>
-    <jsp:attribute name="footer">
-
-    </jsp:attribute>
+    keywordPage="computer, notebook, smartphone, tablet"
+    contextPath="${pageContext.request.contextPath}">
     <jsp:body>
 
         <c:choose>
@@ -27,7 +22,7 @@
             <c:otherwise>
                 <div class="ui basic segment">
                     <div class="ui breadcrumb">
-                        <a class="section" href="${request.contextPath}">หน้าแรก</a>
+                        <a class="section" href="${pageContext.request.contextPath}">หน้าแรก</a>
                         <i class="right angle icon divider"></i>
                         <c:if test="${not empty categoryParent}">
                             <div class="section">${categoryParent.name}</div>

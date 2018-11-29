@@ -6,11 +6,12 @@
 <t:master-layout 
     titlePage="${title}"
     descriptionPage="Sale more than gadget"
-    keywordPage="computer, notebook, smartphone, tablet">
+    keywordPage="computer, notebook, smartphone, tablet"
+    contextPath="${pageContext.request.contextPath}">
     <jsp:body>
         <div class="ui basic segment">
             <div class="ui breadcrumb">
-                <a class="section" href="${request.contextPath}">หน้าแรก</a>
+                <a class="section" href="${pageContext.request.contextPath}">หน้าแรก</a>
                 <i class="right angle icon divider"></i>
                 <div class="active section">ชำระเงิน</div>
             </div>
