@@ -44,7 +44,11 @@
                         <div class="ui segment">
                             <div class="ui form">
                                 <h4 class="ui dividing header">ที่อยู่จัดส่ง</h4>
-
+                                <div class="field">
+                                    <div class="six-teen wide field">
+                                        <textarea rows="2" name="address" placeholder="ชื่อ ที่อยู่สำหรับจัดส่งสินค้า" required></textarea>
+                                    </div>
+                                </div>    
                             </div>
                         </div>
                         <div class="ui segment">

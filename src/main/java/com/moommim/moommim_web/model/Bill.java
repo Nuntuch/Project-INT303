@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -19,10 +20,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Nuntuch Thongyoo
- */
 @Entity
 @Table(name = "BILL")
 @XmlRootElement
@@ -137,5 +134,5 @@ public class Bill implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.Bill[ id=" + id + " ]";
     }
-    
+
 }

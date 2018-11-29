@@ -4,7 +4,7 @@ import com.moommim.moommim_web.config.Key;
 import com.moommim.moommim_web.config.ServletPath;
 import com.moommim.moommim_web.config.ViewPath;
 import com.moommim.moommim_web.controller.base.BaseController;
-import com.moommim.moommim_web.repository.CartRepository;
+import com.moommim.moommim_web.service.CartServiceImpl;
 import com.moommim.moommim_web.service.base.ProductService;
 import com.moommim.moommim_web.util.Util;
 import java.io.IOException;
@@ -32,9 +32,9 @@ public class CartServlet extends BaseController {
         String redirectParam = request.getParameter("redirect");
         HttpSession session = request.getSession(true);
         boolean isRedirect = true;
-        CartRepository cart = (CartRepository) session.getAttribute(Key.CART_KEY);
+        CartServiceImpl cart = (CartServiceImpl) session.getAttribute(Key.CART_KEY);
         if (Util.isEmpty(cart)) {
-            cart = new CartRepository();
+            cart = new CartServiceImpl();
             session.setAttribute(Key.CART_KEY, cart);
         }
         if (Util.isEmpty(cart.getCartItemList())) {
@@ -65,7 +65,7 @@ public class CartServlet extends BaseController {
         sendToPage(ViewPath.SHOW_CART_VIEW, request, response);
     }
 
-    private void updateCart(String action, int productId, CartRepository cart) {
+    private void updateCart(String action, int productId, CartServiceImpl cart) {
         switch (action) {
             case "add":
                 cart.addProduct(productService.getProductById(productId));

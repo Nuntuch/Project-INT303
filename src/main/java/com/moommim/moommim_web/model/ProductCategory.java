@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -18,10 +19,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Nuntuch Thongyoo
- */
 @Entity
 @Table(name = "PRODUCT_CATEGORY")
 @XmlRootElement
@@ -117,5 +114,5 @@ public class ProductCategory implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductCategory[ id=" + id + " ]";
     }
-    
+
 }
