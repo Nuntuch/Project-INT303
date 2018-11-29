@@ -82,7 +82,7 @@
                 </div>
                 <div class="ui huge stackable menu">
                     <div class="item">
-                        <img class="ui fluid image" src="../../assets/images/logo.png" />                 
+                        <img class="ui fluid small image" src="https://www.dropbox.com/s/czz7pfpcsywbt8t/logo.png?raw=1" />                 
                     </div>
                     <div class="ui dropdown item" tabindex="0">
                         หมวดหมู่
@@ -125,8 +125,7 @@
                     <div class="column">
                         <h4 class="ui header">เกี่ยวกับ MoomMim</h4>
                         <div class="ui link list">
-                            <a href="about" class="item">เกี่ยวกับเรา</a>
-                            <a href="contact" class="item">ติดต่อเรา</a>
+                            <a href="mailto:moommim.store@gmail.com" class="item">ติดต่อเรา</a>
                         </div>
                     </div>
                     <div class="column">

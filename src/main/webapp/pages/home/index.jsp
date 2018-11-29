@@ -9,6 +9,9 @@
     keywordPage="computer, notebook, smartphone, tablet"
     contextPath="${pageContext.request.contextPath}">
     <jsp:body>
+        <div class="ui segment">
+            <img class="ui fluid image" src="https://laz-img-cdn.alicdn.com/images/ims-web/TB13RNZsxYaK1RjSZFnXXa80pXa.jpg_1200x1200.jpg" />
+        </div>
         <div class="ui four stackable cards">
             <c:forEach items="${productStockList}" var="item">
                 <a class="ui card link" href="product?id=${item.id}">
