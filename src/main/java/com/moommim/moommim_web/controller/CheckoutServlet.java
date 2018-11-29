@@ -58,13 +58,6 @@ public class CheckoutServlet extends BaseController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //                                        <textarea rows="2" name="address" placeholder="ชื่อ ที่อยู่สำหรับจัดส่งสินค้า" required></textarea>
-//                                        <input type="text" name="cardOwner" placeholder="ชื่อผู้ถือบัตร" required>
-//                                        <input type="number" name="cardExpireMonth" maxlength="4" placeholder="MM" required>
-//                                        <input type="number" name="cardExpireYear" maxlength="4" placeholder="YY" required>
-//                                        <input type="number" name="cardNumber" maxlength="16" placeholder="เลขบัตร" required>
-//                                        <input type="number" name="cardCVC" maxlength="3" placeholder="CVC" required>
-//                                
         String address = request.getParameter("address");
         String cardOwner = request.getParameter("cardOwner");
         String cardExpireMonth = request.getParameter("cardExpireMonth");
@@ -84,26 +77,18 @@ public class CheckoutServlet extends BaseController {
             CartServiceImpl cartServiceImpl = (CartServiceImpl) session.getAttribute(Key.CART_KEY);
             UserAccount userAccount = (UserAccount) session.getAttribute(Key.USER_ACCOUNT_KEY);
 
-            Bill bill = new Bill();
-            bill.setAddress(address);
-            bill.setCreateAt(new Date());
-            bill.setTotalPrice(cartServiceImpl.getTotalPrice());
+            Bill bill = new Bill(address, new Date(), cartServiceImpl.getTotalPrice());
             bill.setUserId(userAccount);
 
             Bill billNew = billService.create(bill);
 
             if (Util.isNotEmpty(billNew)) {
-
-                List<CartItem> cartItems = cartServiceImpl.getCartItemList();
-                for (CartItem cartItem : cartItems) {
-                    BigDecimal amount = new BigDecimal(cartItem.getQuantity());
-                    BigDecimal price = cartItem.getProduct().getPrice();
-                    productSellService.create(new ProductSale(cartItem.getQuantity(), amount.multiply(price), billNew.getId(), new Date(), price));
-                }
+                System.out.println("Create: " + billNew.toString());
                 cartServiceImpl.clearAll();
                 sendRedirectToPage(ServletPath.HOME_SERVLET, response);
                 return;
             }
+
         }
         request.setAttribute("title", "Checkout");
         sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
