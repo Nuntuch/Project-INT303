@@ -36,8 +36,9 @@
                 <div class="ui inverted menu">
                     <a class="header item" href="${contextPath}">Moommim</a>
                     <div class="right menu">
-                        <a class="item" href="register">สมัครสมาชิก</a>
-                        <a class="item" href="login">เข้าสู่ระบบ</a>
+                        ${not empty sessionScope.userAccount ? sessionScope.userAccount.firstName : '<a class="item" href="register">สมัครสมาชิก</a>
+                          <a class="item" href="login">เข้าสู่ระบบ</a>'}
+
                     </div>
                 </div>
                 <div class="ui huge stackable menu">

@@ -9,6 +9,7 @@
     >
     <jsp:body>
         <h1>Login :</h1>
+        ${loginStatus}
         <form action="login" method="post">
 
             Email : <input type="email" required name="email" />
