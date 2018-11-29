@@ -6,8 +6,11 @@ import com.moommim.moommim_web.config.ViewPath;
 import com.moommim.moommim_web.controller.base.BaseController;
 import com.moommim.moommim_web.model.Bill;
 import com.moommim.moommim_web.model.CartItem;
+import com.moommim.moommim_web.model.ProductSale;
 import com.moommim.moommim_web.model.UserAccount;
+import com.moommim.moommim_web.service.CartServiceImpl;
 import com.moommim.moommim_web.service.base.BillService;
+import com.moommim.moommim_web.service.base.ProductSellService;
 import com.moommim.moommim_web.service.base.ProductService;
 import com.moommim.moommim_web.util.Util;
 
@@ -17,7 +20,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
@@ -27,7 +32,19 @@ public class CheckoutServlet extends BaseController {
     private static final Logger LOGGER = Logger.getLogger(CheckoutServlet.class.getName());
 
     @Inject
+    ProductSellService productSellService;
+
+    public CheckoutServlet() {
+    }
+
+    @Inject
     private ProductService productService;
+
+    @Inject
+    BillService billService;
+
+    @Inject
+    ProductSellService productSellService1;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,9 +53,6 @@ public class CheckoutServlet extends BaseController {
         request.setAttribute("title", "Checkout");
         sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
     }
-
-    @Inject
-    BillService billService;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -67,23 +81,32 @@ public class CheckoutServlet extends BaseController {
 
             HttpSession session = request.getSession(false);
 
-            CartItem cartItem = (CartItem) session.getAttribute(Key.CART_KEY);
+            CartServiceImpl cartServiceImpl = (CartServiceImpl) session.getAttribute(Key.CART_KEY);
             UserAccount userAccount = (UserAccount) session.getAttribute(Key.USER_ACCOUNT_KEY);
 
             Bill bill = new Bill();
             bill.setAddress(address);
             bill.setCreateAt(new Date());
-            bill.setTotalPrice(cartItem.getTotalPrice());
+            bill.setTotalPrice(cartServiceImpl.getTotalPrice());
             bill.setUserId(userAccount);
 
-            billService.AddBillToDB(bill);
+            Bill billNew = billService.create(bill);
 
-            sendToPage(ServletPath.HOME_SERVLET, request, response);
+            if (Util.isNotEmpty(billNew)) {
 
+                List<CartItem> cartItems = cartServiceImpl.getCartItemList();
+                for (CartItem cartItem : cartItems) {
+                    BigDecimal amount = new BigDecimal(cartItem.getQuantity());
+                    BigDecimal price = cartItem.getProduct().getPrice();
+                    productSellService.create(new ProductSale(cartItem.getQuantity(), amount.multiply(price), billNew.getId(), new Date(), price));
+                }
+                cartServiceImpl.clearAll();
+                sendRedirectToPage(ServletPath.HOME_SERVLET, response);
+                return;
+            }
         }
-        sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
-
         request.setAttribute("title", "Checkout");
+        sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
     }
 
 }
