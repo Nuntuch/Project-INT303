@@ -62,16 +62,16 @@
                         </form>
                     </div>
                     <div class="right menu">
-                        <div class="item">
+                        <a class="item" href="cart">
                             <div class="ui labeled button" tabindex="0">
                                 <div class="ui primary button">
                                     <i class="shopping cart icon"></i>
                                 </div>
-                                <a class="ui basic primary left pointing label">
+                                <div class="ui basic primary left pointing label">
                                     ${not empty sessionScope.cart ? sessionScope.cart.totalQuantity : 0}
-                                </a>
+                                </div>
                             </div> 
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <jsp:doBody />
