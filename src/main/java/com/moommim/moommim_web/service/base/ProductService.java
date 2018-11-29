@@ -15,8 +15,4 @@ public interface ProductService {
 
     List<ProductStock> getAllProductByCategoryId(int categoryId, String isShow);
 
-    boolean updateProduct(ProductStock product);
-
-    boolean removeProductById(int id);
-
 }

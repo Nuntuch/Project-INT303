@@ -19,31 +19,28 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductStock> getProductByName(String productName) {
-        return null;
+        List<ProductStock> result = null;
+        try {
+            result = productStockRepository.findWithKeyword("%" + productName +"%");
+        } catch (Exception ex) {
+            System.out.println("getProductByName ->" + ex.getMessage());
+        }
+        return result;
     }
 
     @Override
     public List<ProductStock> getAllProduct() {
-        return null;
+        return productStockRepository.findAll();
     }
 
     @Override
     public List<ProductStock> getAllProductByCategoryId(int categoryId) {
         return productStockRepository.findOptionalByCategoryId_id(categoryId);
     }
-    
+
     @Override
     public List<ProductStock> getAllProductByCategoryId(int categoryId, String isShow) {
         return productStockRepository.findOptionalByCategoryId_idAndIsShow(categoryId, isShow);
     }
 
-    @Override
-    public boolean updateProduct(ProductStock product) {
-        return false;
-    }
-
-    @Override
-    public boolean removeProductById(int id) {
-        return false;
-    }
 }

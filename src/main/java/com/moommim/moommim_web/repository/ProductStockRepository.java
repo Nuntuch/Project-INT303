@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 
 import com.moommim.moommim_web.model.ProductStock;
 import org.apache.deltaspike.data.api.AbstractEntityRepository;
+import org.apache.deltaspike.data.api.Query;
 import org.apache.deltaspike.data.api.Repository;
 
 @Transactional
@@ -15,7 +16,8 @@ public abstract class ProductStockRepository extends AbstractEntityRepository<Pr
 
     public abstract ProductStock findOptionalByName(String name);
 
-    public abstract ProductStock findOptionalByNameLike(String name);
+    @Query("select p from ProductStock p where lower(p.name) like ?1")
+    public abstract List<ProductStock> findWithKeyword(String name);
 
     public abstract List<ProductStock> findOptionalByCategoryId_id(int categoryId);
     
