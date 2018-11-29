@@ -3,6 +3,7 @@ package com.moommim.moommim_web.controller;
 import com.moommim.moommim_web.config.ServletPath;
 import com.moommim.moommim_web.config.ViewPath;
 import com.moommim.moommim_web.controller.base.BaseController;
+import com.moommim.moommim_web.service.base.BillService;
 import com.moommim.moommim_web.service.base.ProductService;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -17,6 +18,9 @@ public class HomeServlet extends BaseController {
 
     private static final Logger LOGGER = Logger.getLogger(HomeServlet.class.getName());
 
+    @Inject
+    BillService billService;
+    
     @Inject
     private ProductService productService;
 
