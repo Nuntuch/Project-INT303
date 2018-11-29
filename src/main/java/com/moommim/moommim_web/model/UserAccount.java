@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -19,10 +20,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Nuntuch Thongyoo
- */
 @Entity
 @Table(name = "USER_ACCOUNT")
 @XmlRootElement
@@ -72,8 +69,6 @@ public class UserAccount implements Serializable {
     private List<ProductStock> productStockList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Bill> billList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private List<UserAddress> userAddressList;
 
     public UserAccount() {
     }
@@ -84,14 +79,6 @@ public class UserAccount implements Serializable {
 
     public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile) {
         this.id = id;
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.mobile = mobile;
-    }
-
-    public UserAccount(String email, String password, String firstName, String lastName, String mobile) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -163,15 +150,6 @@ public class UserAccount implements Serializable {
 
     public void setBillList(List<Bill> billList) {
         this.billList = billList;
-    }
-
-    @XmlTransient
-    public List<UserAddress> getUserAddressList() {
-        return userAddressList;
-    }
-
-    public void setUserAddressList(List<UserAddress> userAddressList) {
-        this.userAddressList = userAddressList;
     }
 
     @Override

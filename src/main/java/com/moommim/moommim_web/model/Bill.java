@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -19,16 +20,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Nuntuch Thongyoo
- */
 @Entity
 @Table(name = "BILL")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Bill.findAll", query = "SELECT b FROM Bill b")
     , @NamedQuery(name = "Bill.findById", query = "SELECT b FROM Bill b WHERE b.id = :id")
+    , @NamedQuery(name = "Bill.findByAddress", query = "SELECT b FROM Bill b WHERE b.address = :address")
     , @NamedQuery(name = "Bill.findByCreateAt", query = "SELECT b FROM Bill b WHERE b.createAt = :createAt")
     , @NamedQuery(name = "Bill.findByTotalPrice", query = "SELECT b FROM Bill b WHERE b.totalPrice = :totalPrice")})
 public class Bill implements Serializable {
@@ -39,6 +37,11 @@ public class Bill implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
+    @Column(name = "ADDRESS")
+    private String address;
     @Basic(optional = false)
     @NotNull
     @Column(name = "CREATE_AT")
@@ -52,9 +55,6 @@ public class Bill implements Serializable {
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private UserAccount userId;
-    @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private UserAddress addressId;
 
     public Bill() {
     }
@@ -63,8 +63,9 @@ public class Bill implements Serializable {
         this.id = id;
     }
 
-    public Bill(Integer id, Date createAt, String totalPrice) {
+    public Bill(Integer id, String address, Date createAt, String totalPrice) {
         this.id = id;
+        this.address = address;
         this.createAt = createAt;
         this.totalPrice = totalPrice;
     }
@@ -75,6 +76,14 @@ public class Bill implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Date getCreateAt() {
@@ -101,14 +110,6 @@ public class Bill implements Serializable {
         this.userId = userId;
     }
 
-    public UserAddress getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(UserAddress addressId) {
-        this.addressId = addressId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -133,5 +134,5 @@ public class Bill implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.Bill[ id=" + id + " ]";
     }
-    
+
 }

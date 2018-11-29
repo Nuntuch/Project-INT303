@@ -1,3 +1,4 @@
+
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -19,10 +20,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Nuntuch Thongyoo
- */
 @Entity
 @Table(name = "PRODUCT_SALE")
 @XmlRootElement
@@ -164,5 +161,5 @@ public class ProductSale implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductSale[ id=" + id + " ]";
     }
-    
+
 }
