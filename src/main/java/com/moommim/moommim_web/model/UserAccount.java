@@ -1,4 +1,3 @@
-
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -81,6 +80,14 @@ public class UserAccount implements Serializable {
 
     public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile) {
         this.id = id;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobile = mobile;
+    }
+
+    public UserAccount(String email, String password, String firstName, String lastName, String mobile) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
