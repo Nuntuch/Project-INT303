@@ -23,6 +23,7 @@ public class HomeServlet extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("title", "MoomMim Sale More Gadget");
         sendToPage(ViewPath.INDEX_VIEW, request, response);
     }
 
