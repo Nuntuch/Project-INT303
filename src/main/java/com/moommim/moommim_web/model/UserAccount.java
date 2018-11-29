@@ -95,6 +95,7 @@ public class UserAccount implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobile = mobile;
+      
     }
 
     public Integer getId() {
