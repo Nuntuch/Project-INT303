@@ -52,7 +52,6 @@
         <![endif]-->
     </head>
     <body>
-        <img src="${contextPath}/assets/icon/apple-icon-57x57.png"/>
         <div class="ui segment">
             <div class="ui container">
                 <div class="ui inverted menu">
@@ -67,9 +66,6 @@
                                         </div>
                                         <i class="dropdown icon"></i>
                                         <div class="menu">
-                                            <a class="item" href="history">
-                                                ดูประวัติการสั่งซื้อ
-                                            </a>
                                             <a class="item" href="logout">
                                                 ออกจากระบบ
                                             </a>
@@ -85,6 +81,9 @@
                     </div>
                 </div>
                 <div class="ui huge stackable menu">
+                    <div class="item">
+                        <img class="ui fluid image" src="../../assets/images/logo.png" />                 
+                    </div>
                     <div class="ui dropdown item" tabindex="0">
                         หมวดหมู่
                         <i class="dropdown icon"></i>
