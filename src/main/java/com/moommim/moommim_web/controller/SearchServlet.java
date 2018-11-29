@@ -3,7 +3,6 @@ package com.moommim.moommim_web.controller;
 import com.moommim.moommim_web.config.ServletPath;
 import com.moommim.moommim_web.config.ViewPath;
 import com.moommim.moommim_web.controller.base.BaseController;
-import com.moommim.moommim_web.model.ProductCategory;
 import com.moommim.moommim_web.model.ProductStock;
 import com.moommim.moommim_web.service.base.ProductCategoryService;
 import com.moommim.moommim_web.service.base.ProductService;
