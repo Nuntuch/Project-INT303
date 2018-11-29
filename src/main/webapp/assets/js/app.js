@@ -6,8 +6,21 @@ $(document)
             handleDropDown();
             handleCardDimmer();
             handleRating();
+            handleCloseMessage()
             showChatSupport();
         });
+
+function handleCloseMessage() {
+    $('.message .close')
+            .on('click', function () {
+                $(this)
+                        .closest('.message')
+                        .transition('fade')
+                        ;
+            })
+            ;
+}
+
 
 function handleDropDown() {
     $('.ui.menu .ui.dropdown').dropdown({
