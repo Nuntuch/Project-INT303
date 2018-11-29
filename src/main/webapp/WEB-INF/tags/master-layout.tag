@@ -1,9 +1,11 @@
 <%@tag description="Master layout template" pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@attribute name="titlePage" required="true"  description="title of page"%>
 <%@attribute name="keywordPage" required="false"  description="keyword of page eg. [computer, smartphone, tablet]"%>
 <%@attribute name="descriptionPage" required="false"  description="description of page"%>
 <%@attribute name="contextPath" required="false"  description="Context Path"%>
 <%@attribute name="header" fragment="true"  description="header in head tag"%>
+<%@attribute name="cssInternal" fragment="true"  description="css in internal"%>
 <%@attribute name="footer" fragment="true" description="footer atfer body"%>
 <%@attribute name="script" fragment="true" description="internal script after footer"%>
 
@@ -21,6 +23,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
         <style>
             <%@ include file="../../assets/css/styles.css"%>
+            <jsp:invoke fragment="cssInternal" />
         </style>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pridi:400,500&amp;subset=latin-ext,thai" />
         <jsp:invoke fragment="header" />
@@ -36,9 +39,30 @@
                 <div class="ui inverted menu">
                     <a class="header item" href="${contextPath}">Moommim</a>
                     <div class="right menu">
-                        ${not empty sessionScope.userAccount ? sessionScope.userAccount.firstName : '<a class="item" href="register">สมัครสมาชิก</a>
-                          <a class="item" href="login">เข้าสู่ระบบ</a>'}
-
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.userAccount}" >
+                                <div class="item">
+                                    <div class="ui inverted inline dropdown">
+                                        <div class="text">
+                                            ${sessionScope.userAccount.firstName}
+                                        </div>
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <a class="item" href="history">
+                                                ดูประวัติการสั่งซื้อ
+                                            </a>
+                                            <a class="item" href="logout">
+                                                ออกจากระบบ
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="item" href="register">สมัครสมาชิก</a>
+                                <a class="item" href="login">เข้าสู่ระบบ</a>
+                            </c:otherwise>
+                        </c:choose>  
                     </div>
                 </div>
                 <div class="ui huge stackable menu">
