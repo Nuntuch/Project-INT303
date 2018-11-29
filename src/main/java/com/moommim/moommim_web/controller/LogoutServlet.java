@@ -16,10 +16,4 @@ public class LogoutServlet extends BaseController {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
 }
