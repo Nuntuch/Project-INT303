@@ -84,9 +84,9 @@
                     </div>
                 </div>
                 <div class="ui huge stackable menu">
-                    <div class="item">
+                    <a class="item" href="${contextPath}">
                         <img class="ui fluid small image" src="https://www.dropbox.com/s/czz7pfpcsywbt8t/logo.png?raw=1" />                 
-                    </div>
+                    </a>
                     <div class="ui dropdown item" tabindex="0">
                         หมวดหมู่
                         <i class="dropdown icon"></i>
