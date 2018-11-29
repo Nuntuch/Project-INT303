@@ -33,19 +33,26 @@ public class LoginServlet extends BaseController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
+        String username = request.getParameter("email");
         String password = request.getParameter("password");
+            System.out.println("REQUEST >>>>>>>>>>> "+" USERNAME : " +username +" Password : "+password +"  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ");
         if (Util.isNotEmpty(username)
                 && Util.isNotEmpty(password)) {
+            System.out.println("REQUEST >>> USER AND PASSWORD IS NOT NULL" + " USERNAME : " +username +" Password : "+password +" ------------------------------------");
             UserAccount user = authenticationService.login(username, password);
             if (Util.isNotEmpty(user)) {
+                System.out.println("CAN FIND USER IN DB >>> USER : "+user);
+                
                 request.getSession(true).setAttribute(Key.USER_ACCOUNT_KEY, user);
                 sendRedirectToPage(ServletPath.HOME_SERVLET, response);
                 return;
             } else {
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DO ELSE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
                 request.setAttribute("loginStatus", "ชื่อผู้ใช้หรือรหัสผ่านผิด");
             }
         }
+        
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Servlet Is Working<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         sendToPage(ViewPath.LOGIN_VIEW, request, response);
     }
 
