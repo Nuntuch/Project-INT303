@@ -6,8 +6,6 @@ import com.moommim.moommim_web.config.ViewPath;
 import com.moommim.moommim_web.controller.base.BaseController;
 import com.moommim.moommim_web.model.UserAccount;
 import com.moommim.moommim_web.service.base.AuthenticationService;
-import com.moommim.moommim_web.service.base.ProductService;
-import com.moommim.moommim_web.service.base.UserService;
 import com.moommim.moommim_web.util.Util;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -33,7 +31,7 @@ public class LoginServlet extends BaseController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
+        String username = request.getParameter("email");
         String password = request.getParameter("password");
         if (Util.isNotEmpty(username)
                 && Util.isNotEmpty(password)) {
