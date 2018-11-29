@@ -66,6 +66,12 @@ public class Bill implements Serializable {
     public Bill(Integer id) {
         this.id = id;
     }
+    
+    public Bill(String address, Date createAt, BigDecimal totalPrice) {
+        this.address = address;
+        this.createAt = createAt;
+        this.totalPrice = totalPrice;
+    }
 
     public Bill(Integer id, String address, Date createAt, BigDecimal totalPrice) {
         this.id = id;
