@@ -1,4 +1,3 @@
-
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -10,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -65,8 +63,6 @@ public class UserAccount implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "MOBILE")
     private String mobile;
-    @ManyToMany(mappedBy = "userAccountList")
-    private List<ProductStock> productStockList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<Bill> billList;
 
@@ -77,8 +73,7 @@ public class UserAccount implements Serializable {
         this.id = id;
     }
 
-    public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile) {
-        this.id = id;
+    public UserAccount(String email, String password, String firstName, String lastName, String mobile) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -86,7 +81,8 @@ public class UserAccount implements Serializable {
         this.mobile = mobile;
     }
 
-    public UserAccount(String email, String password, String firstName, String lastName, String mobile) {
+    public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -140,15 +136,6 @@ public class UserAccount implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
-    }
-
-    @XmlTransient
-    public List<ProductStock> getProductStockList() {
-        return productStockList;
-    }
-
-    public void setProductStockList(List<ProductStock> productStockList) {
-        this.productStockList = productStockList;
     }
 
     @XmlTransient

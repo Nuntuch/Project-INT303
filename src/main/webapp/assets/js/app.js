@@ -8,6 +8,7 @@ $(document)
             handleRating();
             handleCloseMessage()
             showChatSupport();
+            addToFav();
         });
 
 function handleCloseMessage() {

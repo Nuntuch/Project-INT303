@@ -2,6 +2,7 @@
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -47,11 +48,11 @@ public class Bill implements Serializable {
     @Column(name = "CREATE_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "TOTAL_PRICE")
-    private String totalPrice;
+    private BigDecimal totalPrice;
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private UserAccount userId;
@@ -62,8 +63,14 @@ public class Bill implements Serializable {
     public Bill(Integer id) {
         this.id = id;
     }
+    
+    public Bill(String address, Date createAt, BigDecimal totalPrice) {
+        this.address = address;
+        this.createAt = createAt;
+        this.totalPrice = totalPrice;
+    }
 
-    public Bill(Integer id, String address, Date createAt, String totalPrice) {
+    public Bill(Integer id, String address, Date createAt, BigDecimal totalPrice) {
         this.id = id;
         this.address = address;
         this.createAt = createAt;
@@ -94,11 +101,11 @@ public class Bill implements Serializable {
         this.createAt = createAt;
     }
 
-    public String getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(String totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 

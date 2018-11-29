@@ -17,5 +17,7 @@ public class ServletPath {
     public static final String CART_SERVLET = "cart";
 
     public static final String CHECKOUT_SERVLET = "checkout";
+    
+    public static final String HISTORY_SERVLET = "history";
 
 }

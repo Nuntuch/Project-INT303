@@ -18,6 +18,8 @@ public class ViewPath {
 
     public static final String BASE_SEARCH_PAGE = BASE_PAGE + "/search";
 
+    public static final String BASE_HISTORY_PAGE = BASE_PAGE + "/bill";
+
     public static final String INDEX_VIEW = BASE_HOME_PAGE + "/index.jsp";
 
     public static final String PRODUCT_BY_CATEGORY_VIEW = BASE_PRODUCT_PAGE + "/show_by_category.jsp";
@@ -33,5 +35,9 @@ public class ViewPath {
     public static final String LOGIN_VIEW = BASE_LOGIN_PAGE + "/login.jsp";
 
     public static final String SEARCH_VIEW = BASE_SEARCH_PAGE + "/search.jsp";
+
+    public static final String HISTORY_VIEW = BASE_HISTORY_PAGE + "/show_history.jsp";
+
+    public static final String CHECKOUT_COMPLETE_VIEW = BASE_CHECKOUT_PAGE + "/show_checkout_complete.jsp";
 
 }

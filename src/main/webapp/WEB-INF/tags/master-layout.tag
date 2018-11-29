@@ -66,6 +66,9 @@
                                         </div>
                                         <i class="dropdown icon"></i>
                                         <div class="menu">
+                                            <a class="item" href="history">
+                                                ประวัติการสั่งซื้อ
+                                            </a>
                                             <a class="item" href="logout">
                                                 ออกจากระบบ
                                             </a>
