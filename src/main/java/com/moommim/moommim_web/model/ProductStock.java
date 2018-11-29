@@ -100,6 +100,9 @@ public class ProductStock implements Serializable {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private ProductCategory categoryId;
+    @JoinColumn(name = "FEATURED_IMAGE_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private ProductImage featuredImageId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<ProductImage> productImageList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
@@ -219,6 +222,14 @@ public class ProductStock implements Serializable {
 
     public void setCategoryId(ProductCategory categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public ProductImage getFeaturedImageId() {
+        return featuredImageId;
+    }
+
+    public void setFeaturedImageId(ProductImage featuredImageId) {
+        this.featuredImageId = featuredImageId;
     }
 
     @XmlTransient

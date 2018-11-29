@@ -2,7 +2,6 @@
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -16,8 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,9 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "UserAccount.findByPassword", query = "SELECT u FROM UserAccount u WHERE u.password = :password")
     , @NamedQuery(name = "UserAccount.findByFirstName", query = "SELECT u FROM UserAccount u WHERE u.firstName = :firstName")
     , @NamedQuery(name = "UserAccount.findByLastName", query = "SELECT u FROM UserAccount u WHERE u.lastName = :lastName")
-    , @NamedQuery(name = "UserAccount.findByDob", query = "SELECT u FROM UserAccount u WHERE u.dob = :dob")
-    , @NamedQuery(name = "UserAccount.findByMobile", query = "SELECT u FROM UserAccount u WHERE u.mobile = :mobile")
-    , @NamedQuery(name = "UserAccount.findByGender", query = "SELECT u FROM UserAccount u WHERE u.gender = :gender")})
+    , @NamedQuery(name = "UserAccount.findByMobile", query = "SELECT u FROM UserAccount u WHERE u.mobile = :mobile")})
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -65,19 +60,11 @@ public class UserAccount implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "LAST_NAME")
     private String lastName;
-    @Column(name = "DOB")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "MOBILE")
     private String mobile;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "GENDER")
-    private String gender;
     @ManyToMany(mappedBy = "userAccountList")
     private List<ProductStock> productStockList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
@@ -92,14 +79,13 @@ public class UserAccount implements Serializable {
         this.id = id;
     }
 
-    public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile, String gender) {
+    public UserAccount(Integer id, String email, String password, String firstName, String lastName, String mobile) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobile = mobile;
-        this.gender = gender;
     }
 
     public Integer getId() {
@@ -142,28 +128,12 @@ public class UserAccount implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
     public String getMobile() {
         return mobile;
     }
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     @XmlTransient
