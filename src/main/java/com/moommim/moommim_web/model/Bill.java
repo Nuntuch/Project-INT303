@@ -1,11 +1,8 @@
-
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,15 +12,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Nuntuch Thongyoo
+ */
 @Entity
 @Table(name = "BILL")
 @XmlRootElement
@@ -56,8 +55,6 @@ public class Bill implements Serializable {
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private UserAddress addressId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "billId")
-    private List<ProductSale> productSaleList;
 
     public Bill() {
     }
@@ -112,15 +109,6 @@ public class Bill implements Serializable {
         this.addressId = addressId;
     }
 
-    @XmlTransient
-    public List<ProductSale> getProductSaleList() {
-        return productSaleList;
-    }
-
-    public void setProductSaleList(List<ProductSale> productSaleList) {
-        this.productSaleList = productSaleList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -145,5 +133,5 @@ public class Bill implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.Bill[ id=" + id + " ]";
     }
-
+    
 }

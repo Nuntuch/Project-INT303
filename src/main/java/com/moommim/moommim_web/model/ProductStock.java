@@ -1,4 +1,3 @@
-
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -27,6 +26,10 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Nuntuch Thongyoo
+ */
 @Entity
 @Table(name = "PRODUCT_STOCK")
 @XmlRootElement
@@ -34,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ProductStock.findAll", query = "SELECT p FROM ProductStock p")
     , @NamedQuery(name = "ProductStock.findById", query = "SELECT p FROM ProductStock p WHERE p.id = :id")
     , @NamedQuery(name = "ProductStock.findByName", query = "SELECT p FROM ProductStock p WHERE p.name = :name")
+    , @NamedQuery(name = "ProductStock.findByFeaturedImage", query = "SELECT p FROM ProductStock p WHERE p.featuredImage = :featuredImage")
     , @NamedQuery(name = "ProductStock.findByDetail", query = "SELECT p FROM ProductStock p WHERE p.detail = :detail")
     , @NamedQuery(name = "ProductStock.findByAmountInStock", query = "SELECT p FROM ProductStock p WHERE p.amountInStock = :amountInStock")
     , @NamedQuery(name = "ProductStock.findByBrand", query = "SELECT p FROM ProductStock p WHERE p.brand = :brand")
@@ -55,6 +59,11 @@ public class ProductStock implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "NAME")
     private String name;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "FEATURED_IMAGE")
+    private String featuredImage;
     @Size(max = 500)
     @Column(name = "DETAIL")
     private String detail;
@@ -100,11 +109,6 @@ public class ProductStock implements Serializable {
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private ProductCategory categoryId;
-    @JoinColumn(name = "FEATURED_IMAGE_ID", referencedColumnName = "ID")
-    @ManyToOne
-    private ProductImage featuredImageId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private List<ProductImage> productImageList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<ProductSale> productSaleList;
 
@@ -115,9 +119,10 @@ public class ProductStock implements Serializable {
         this.id = id;
     }
 
-    public ProductStock(Integer id, String name, int amountInStock, String brand, BigDecimal price, String status, Date createAt, Date updateAt, String isShow) {
+    public ProductStock(Integer id, String name, String featuredImage, int amountInStock, String brand, BigDecimal price, String status, Date createAt, Date updateAt, String isShow) {
         this.id = id;
         this.name = name;
+        this.featuredImage = featuredImage;
         this.amountInStock = amountInStock;
         this.brand = brand;
         this.price = price;
@@ -141,6 +146,14 @@ public class ProductStock implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFeaturedImage() {
+        return featuredImage;
+    }
+
+    public void setFeaturedImage(String featuredImage) {
+        this.featuredImage = featuredImage;
     }
 
     public String getDetail() {
@@ -224,23 +237,6 @@ public class ProductStock implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public ProductImage getFeaturedImageId() {
-        return featuredImageId;
-    }
-
-    public void setFeaturedImageId(ProductImage featuredImageId) {
-        this.featuredImageId = featuredImageId;
-    }
-
-    @XmlTransient
-    public List<ProductImage> getProductImageList() {
-        return productImageList;
-    }
-
-    public void setProductImageList(List<ProductImage> productImageList) {
-        this.productImageList = productImageList;
-    }
-
     @XmlTransient
     public List<ProductSale> getProductSaleList() {
         return productSaleList;
@@ -274,5 +270,5 @@ public class ProductStock implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductStock[ id=" + id + " ]";
     }
-
+    
 }

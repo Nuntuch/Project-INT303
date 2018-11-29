@@ -1,4 +1,3 @@
-
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -20,6 +19,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Nuntuch Thongyoo
+ */
 @Entity
 @Table(name = "PRODUCT_SALE")
 @XmlRootElement
@@ -28,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "ProductSale.findById", query = "SELECT p FROM ProductSale p WHERE p.id = :id")
     , @NamedQuery(name = "ProductSale.findByQuantity", query = "SELECT p FROM ProductSale p WHERE p.quantity = :quantity")
     , @NamedQuery(name = "ProductSale.findByAmount", query = "SELECT p FROM ProductSale p WHERE p.amount = :amount")
+    , @NamedQuery(name = "ProductSale.findByBillId", query = "SELECT p FROM ProductSale p WHERE p.billId = :billId")
     , @NamedQuery(name = "ProductSale.findByCreateAt", query = "SELECT p FROM ProductSale p WHERE p.createAt = :createAt")
     , @NamedQuery(name = "ProductSale.findByPricePerUnit", query = "SELECT p FROM ProductSale p WHERE p.pricePerUnit = :pricePerUnit")})
 public class ProductSale implements Serializable {
@@ -49,6 +53,10 @@ public class ProductSale implements Serializable {
     private BigDecimal amount;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "BILL_ID")
+    private int billId;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "CREATE_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
@@ -56,9 +64,6 @@ public class ProductSale implements Serializable {
     @NotNull
     @Column(name = "PRICE_PER_UNIT")
     private BigDecimal pricePerUnit;
-    @JoinColumn(name = "BILL_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Bill billId;
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private ProductStock productId;
@@ -70,10 +75,11 @@ public class ProductSale implements Serializable {
         this.id = id;
     }
 
-    public ProductSale(Integer id, int quantity, BigDecimal amount, Date createAt, BigDecimal pricePerUnit) {
+    public ProductSale(Integer id, int quantity, BigDecimal amount, int billId, Date createAt, BigDecimal pricePerUnit) {
         this.id = id;
         this.quantity = quantity;
         this.amount = amount;
+        this.billId = billId;
         this.createAt = createAt;
         this.pricePerUnit = pricePerUnit;
     }
@@ -102,6 +108,14 @@ public class ProductSale implements Serializable {
         this.amount = amount;
     }
 
+    public int getBillId() {
+        return billId;
+    }
+
+    public void setBillId(int billId) {
+        this.billId = billId;
+    }
+
     public Date getCreateAt() {
         return createAt;
     }
@@ -116,14 +130,6 @@ public class ProductSale implements Serializable {
 
     public void setPricePerUnit(BigDecimal pricePerUnit) {
         this.pricePerUnit = pricePerUnit;
-    }
-
-    public Bill getBillId() {
-        return billId;
-    }
-
-    public void setBillId(Bill billId) {
-        this.billId = billId;
     }
 
     public ProductStock getProductId() {
@@ -158,5 +164,5 @@ public class ProductSale implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductSale[ id=" + id + " ]";
     }
-
+    
 }
