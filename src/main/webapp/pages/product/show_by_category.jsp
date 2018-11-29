@@ -38,7 +38,7 @@
                     <c:forEach items="${productStockListByCategory}" var="item">
                         <a class="ui card link" href="product?id=${item.id}">
                             <div class="image">
-                                <img src="https://via.placeholder.com/300" />
+                                <img src="${item.featuredImage}" />
                             </div>
                             <div class="content">
                                 <div class="header">${item.name}</div>

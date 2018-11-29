@@ -34,18 +34,38 @@
                     </div>
                 </div>
 
-                <h2 class="ui center aligned segment header">
-                    <div class="content ">
-                        ${productById.name}
+                <div class="ui segment">
+                    <div class="ui equal width grid">
+                        <div class="column">
+                            <img class="ui fluid image" src="${productById.featuredImage}" />
+                        </div>
+                        <div class="column">
+                            <h2 class="ui header">${productById.name}</h2>
+                            <h1><fmt:formatNumber  type="currency" currencySymbol="฿" value="${productById.price}"/></h1>
+                            <div class="ui vertical segment">
+                                <h4 class="ui header">มีสินค้าทั้งหมด ${productById.amountInStock} ชิ้น</h4>
+                            </div>
+                            <div class="ui vertical segment">
+                                <div class="ui equal width grid">
+                                    <div class="column">
+                                        <c:if test="${productById.amountInStock  ne 0}">
+                                            <a class="ui fluid big green button" href="cart?action=add&id=${productById.id}"><i class="cart plus icon"></i> เพิ่มลงตระกร้าสินค้า</a>
+                                        </c:if> 
+                                    </div>
+                                    <div class="column">
+                                        <a class="ui fluid big yellow button" href="fav?action=add&id=${productById.id}"><i class="heart icon"></i> เพิ่มลงรายการโปรด</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </h2>
-
-                <div class="ui basic segment">
-                    ${productById.name} |  ${productById.price}
-                    <br>
-                    <a href="cart?action=add&id=${productById.id}">Add to Cart</a> <br/>
-                    <a href="cart?action=remove&id=${productById.id}">Remove from Cart</a>
-                </div>
+                    <div class="ui top attached tabular menu">
+                        <div class="active item">รายระเอียดสินค้า</div>
+                    </div>
+                    <div class="ui bottom attached active tab segment">
+                        ${productById.detail}
+                    </div>
+                </div>   
             </c:otherwise>
         </c:choose>
 
