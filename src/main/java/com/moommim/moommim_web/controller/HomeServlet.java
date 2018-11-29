@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "HomeServlet", urlPatterns = {"/" + ServletPath.HOME_SERVLET})
+@WebServlet(name = "HomeServlet", urlPatterns = { ServletPath.HOME_SERVLET })
 public class HomeServlet extends BaseController {
 
     private static final Logger LOGGER = Logger.getLogger(HomeServlet.class.getName());
