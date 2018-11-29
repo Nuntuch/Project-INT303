@@ -83,6 +83,14 @@ public class ProductSale implements Serializable {
         this.createAt = createAt;
         this.pricePerUnit = pricePerUnit;
     }
+    
+    public ProductSale(int quantity, BigDecimal amount, int billId, Date createAt, BigDecimal pricePerUnit) {
+        this.quantity = quantity;
+        this.amount = amount;
+        this.billId = billId;
+        this.createAt = createAt;
+        this.pricePerUnit = pricePerUnit;
+    }
 
     public Integer getId() {
         return id;
