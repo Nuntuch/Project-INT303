@@ -12,6 +12,6 @@ public abstract class UserRepository extends AbstractEntityRepository<UserAccoun
 
     public abstract UserAccount findOptionalById(int id);
 
-    public abstract UserAccount findOptionalByEmail(int email);
+    public abstract UserAccount findOptionalByEmail(String email);
 
 }

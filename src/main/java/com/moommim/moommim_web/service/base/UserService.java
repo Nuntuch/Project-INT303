@@ -6,8 +6,8 @@ public interface UserService {
 
     UserAccount getUserById(int id);
     
+    UserAccount getUserByEmail(String email);
+    
     boolean create(UserAccount user);
-
-    boolean update(UserAccount user);
 
 }
