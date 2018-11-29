@@ -20,12 +20,12 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "HistoryServlet", urlPatterns = {"/" + ServletPath.HISTORY_SERVLET})
 public class HistoryServlet extends BaseController {
-
+    
     private static final Logger LOGGER = Logger.getLogger(HistoryServlet.class.getName());
-
+    
     @Inject
     private BillService billService;
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,8 +38,10 @@ public class HistoryServlet extends BaseController {
             } else {
                 request.setAttribute("status", "ไม่มีรายการสั่งซื้อ");
             }
+            sendToPage(ViewPath.HISTORY_VIEW, request, response);
+        } else {
+            sendRedirectToPage(ServletPath.LOGIN_SERVLET, response);
         }
-        sendToPage(ViewPath.HISTORY_VIEW, request, response);
     }
-
+    
 }

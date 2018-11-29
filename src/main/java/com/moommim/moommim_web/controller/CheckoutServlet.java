@@ -23,19 +23,25 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "CheckoutServlet", urlPatterns = {"/" + ServletPath.CHECKOUT_SERVLET})
 public class CheckoutServlet extends BaseController {
-    
+
     private static final Logger LOGGER = Logger.getLogger(CheckoutServlet.class.getName());
-    
+
     @Inject
     BillService billService;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("title", "Checkout");
-        sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
+        HttpSession session = request.getSession(false);
+        UserAccount userAccount = (UserAccount) session.getAttribute(Key.USER_ACCOUNT_KEY);
+        if (Util.isNotEmpty(userAccount)) {
+            request.setAttribute("title", "Checkout");
+            sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
+        } else {
+            sendRedirectToPage(ServletPath.LOGIN_SERVLET, response);
+        }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,31 +53,35 @@ public class CheckoutServlet extends BaseController {
         String cardNumber = request.getParameter("cardNumber");
         String cardCVC = request.getParameter("cardCVC");
 
-        if (Util.isNotEmpty(address)
-                && Util.isNotEmpty(cardOwner)
-                && Util.isNotEmpty(cardExpireMonth)
-                && Util.isNotEmpty(cardExpireYear)
-                && Util.isNotEmpty(cardNumber)
-                && Util.isNotEmpty(cardCVC)) {
+        HttpSession session = request.getSession(false);
+        UserAccount userAccount = (UserAccount) session.getAttribute(Key.USER_ACCOUNT_KEY);
+        if (Util.isNotEmpty(userAccount)) {
 
-            HttpSession session = request.getSession(false);
+            if (Util.isNotEmpty(address)
+                    && Util.isNotEmpty(cardOwner)
+                    && Util.isNotEmpty(cardExpireMonth)
+                    && Util.isNotEmpty(cardExpireYear)
+                    && Util.isNotEmpty(cardNumber)
+                    && Util.isNotEmpty(cardCVC)) {
 
-            CartServiceImpl cartServiceImpl = (CartServiceImpl) session.getAttribute(Key.CART_KEY);
-            UserAccount userAccount = (UserAccount) session.getAttribute(Key.USER_ACCOUNT_KEY);
+                CartServiceImpl cartServiceImpl = (CartServiceImpl) session.getAttribute(Key.CART_KEY);
 
-            Bill bill = new Bill(address, new Date(), cartServiceImpl.getTotalPrice());
-            bill.setUserId(userAccount);
+                Bill bill = new Bill(address, new Date(), cartServiceImpl.getTotalPrice());
+                bill.setUserId(userAccount);
 
-            Bill billNew = billService.create(bill);
+                Bill billNew = billService.create(bill);
 
-            if (Util.isNotEmpty(billNew)) {
-                cartServiceImpl.clearAll();
-                sendToPage(ViewPath.CHECKOUT_COMPLETE_VIEW, request, response);
+                if (Util.isNotEmpty(billNew)) {
+                    cartServiceImpl.clearAll();
+                    sendToPage(ViewPath.CHECKOUT_COMPLETE_VIEW, request, response);
+                }
+
             }
-
+            request.setAttribute("title", "Checkout");
+            sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
+        } else {
+            sendRedirectToPage(ServletPath.LOGIN_SERVLET, response);
         }
-        request.setAttribute("title", "Checkout");
-        sendToPage(ViewPath.CHECKOUT_VIEW, request, response);
     }
-    
+
 }
