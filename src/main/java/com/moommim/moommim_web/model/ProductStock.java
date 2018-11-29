@@ -1,4 +1,3 @@
-
 package com.moommim.moommim_web.model;
 
 import java.io.Serializable;
@@ -27,6 +26,10 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Nuntuch Thongyoo
+ */
 @Entity
 @Table(name = "PRODUCT_STOCK")
 @XmlRootElement
@@ -267,5 +270,5 @@ public class ProductStock implements Serializable {
     public String toString() {
         return "com.moommim.moommim_web.model.ProductStock[ id=" + id + " ]";
     }
-
+    
 }
