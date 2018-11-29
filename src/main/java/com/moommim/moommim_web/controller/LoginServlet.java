@@ -44,6 +44,7 @@ public class LoginServlet extends BaseController {
                 request.setAttribute("loginStatus", "ชื่อผู้ใช้หรือรหัสผ่านผิด");
             }
         }
+        request.setAttribute("title", "เข้าสู่ระบบ");
         sendToPage(ViewPath.LOGIN_VIEW, request, response);
     }
 

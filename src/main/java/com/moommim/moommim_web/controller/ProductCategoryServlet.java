@@ -38,6 +38,7 @@ public class ProductCategoryServlet extends BaseController {
             List<ProductStock> productStockListByCategory = productService.getAllProductByCategoryId(categoryId, CommonConstant.SHOW);
             if (Util.isNotEmpty(productStockListByCategory)) {
                 request.setAttribute("categoryName", productStockListByCategory.get(0).getCategoryId().getName());
+                request.setAttribute("title", productStockListByCategory.get(0).getCategoryId().getName());
                 request.setAttribute("productStockListByCategory", productStockListByCategory);
             } else {
                 request.setAttribute("status", "ไม่พบสินค้า");

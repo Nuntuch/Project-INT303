@@ -53,6 +53,7 @@ public class RegisterServlet extends BaseController {
                 }
             }
         }
+        request.setAttribute("title", "สมัครสมาชิก");
         sendToPage(ViewPath.REGISTER_VIEW, request, response);
     }
 
