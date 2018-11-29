@@ -1,9 +1,12 @@
 package com.moommim.moommim_web.service.base;
 
 import com.moommim.moommim_web.model.Bill;
+import java.util.List;
 
 public interface BillService {
 
-   boolean AddBillToDB(Bill bill);
+    Bill create(Bill bill);
+
+    List<Bill> getBillByUserId(int userId);
 
 }
