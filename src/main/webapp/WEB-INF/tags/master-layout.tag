@@ -38,6 +38,7 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="${contextPath}/assets/icon/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
         <style>
             <%@ include file="../../assets/css/styles.css"%>
@@ -52,6 +53,8 @@
         <![endif]-->
     </head>
     <body>
+        <div class="inner">
+        </div>
         <div class="ui segment">
             <div class="ui container">
                 <div class="ui inverted menu">
@@ -147,6 +150,7 @@
         </div>
         <jsp:invoke fragment="footer"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/please-wait/0.0.5/please-wait.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" ></script>
         <script>
             <%@ include file="../../assets/js/app.js"%>

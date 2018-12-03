@@ -1,36 +1,9 @@
-body {
-  background: #F8F8F8;
-  font-family: 'Pridi', serif;
-}
-body .inner {
-  display: none;
-}
-body .pg-loaded > .inner {
-  display: block;
-}
-h1 {
-  color: #253A7A;
-}
-h2 {
-  color: #253A7A;
-}
-h3 {
-  color: #253A7A;
-}
-h4 {
-  color: #253A7A;
-}
-h5 {
-  color: #253A7A;
-}
-h6 {
-  color: #253A7A;
-}
 .spinner {
   margin: 100px auto 0;
   width: 70px;
   text-align: center;
 }
+
 .spinner > div {
   width: 18px;
   height: 18px;
@@ -40,34 +13,28 @@ h6 {
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
+
 .spinner .bounce1 {
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
+
 .spinner .bounce2 {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
+
 @-webkit-keyframes sk-bouncedelay {
-  0%,
-  80%,
-  100% {
-    -webkit-transform: scale(0);
-  }
-  40% {
-    -webkit-transform: scale(1);
-  }
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
 }
+
 @keyframes sk-bouncedelay {
-  0%,
-  80%,
-  100% {
+  0%, 80%, 100% { 
     -webkit-transform: scale(0);
     transform: scale(0);
-  }
-  40% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
   }
 }
-/*# sourceMappingURL=styles.css.map */

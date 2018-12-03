@@ -1,31 +1,3 @@
-body {
-  background: #F8F8F8;
-  font-family: 'Pridi', serif;
-}
-body .inner {
-  display: none;
-}
-body .pg-loaded > .inner {
-  display: block;
-}
-h1 {
-  color: #253A7A;
-}
-h2 {
-  color: #253A7A;
-}
-h3 {
-  color: #253A7A;
-}
-h4 {
-  color: #253A7A;
-}
-h5 {
-  color: #253A7A;
-}
-h6 {
-  color: #253A7A;
-}
 .spinner {
   margin: 100px auto 0;
   width: 70px;
@@ -70,4 +42,4 @@ h6 {
     transform: scale(1);
   }
 }
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=spinner.css.map */
